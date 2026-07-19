@@ -1,0 +1,74 @@
+---
+import '@/styles/global.css';
+import Seo from './Seo.astro';
+import Navbar from '@/components/navigation/Navbar.astro';
+import Footer from '@/components/footer/Footer.astro';
+import { getSiteSettings } from '@/services/wordpress';
+
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  author?: string;
+  noindex?: boolean;
+  /** JSON-LD structured data blocks to inject. */
+  structuredData?: Record<string, unknown>[];
+}
+
+const { structuredData = [], ...seoProps } = Astro.props;
+const settings = await getSiteSettings();
+
+const organizationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: settings.siteName,
+  description: settings.tagline,
+  url: Astro.site?.toString(),
+  logo: new URL(settings.logo.dark.url, Astro.site).toString(),
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: settings.footer.contact.email,
+    telephone: settings.footer.contact.phone,
+    contactType: 'sales',
+  },
+};
+
+const allLd = [organizationLd, ...structuredData];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="REDI Sites — Latest Updates"
+      href="/rss.xml"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <Seo {...seoProps} />
+    {
+      allLd.map((ld) => (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(ld)} />
+      ))
+    }
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="font-heading text-navy-950 sr-only z-[100] rounded-md bg-cyan-400 px-4 py-2 text-sm font-bold uppercase focus:not-sr-only focus:absolute focus:top-3 focus:left-3"
+    >
+      Skip to content
+    </a>
+    <Navbar settings={settings} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer settings={settings} />
+  </body>
+</html>

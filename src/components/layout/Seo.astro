@@ -1,0 +1,44 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  author?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = '/images/hero/landing-hero-bg.jpg',
+  type = 'website',
+  publishedTime,
+  author,
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:site_name" content="REDI Sites" />
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{author && <meta property="article:author" content={author} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />

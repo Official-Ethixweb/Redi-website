@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import Logo from '@/components/ui/Logo.astro';
+---
+
+<BaseLayout
+  title="Register Your Site — REDI Sites"
+  description="Register your commercial property for a REDI readiness evaluation by the Site Selectors Guild."
+  noindex
+>
+  <section class="bg-steel-100 pt-32 pb-24">
+    <div class="container-page">
+      <div class="mx-auto flex max-w-xl flex-col items-center text-center">
+        <Logo variant="nav" class="scale-125" />
+        <h1 class="mt-8 text-4xl sm:text-[2.75rem]">Register Your Site</h1>
+        <p class="text-ink-600 mt-3 text-base">
+          Site registration for the REDI readiness program opens through our team. Tell us about
+          your property and we'll start the evaluation process.
+        </p>
+        <div class="mt-8">
+          <Button href="/contact" variant="primary" icon="arrow-right">Contact Us</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

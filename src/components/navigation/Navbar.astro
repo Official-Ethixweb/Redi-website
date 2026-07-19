@@ -1,0 +1,143 @@
+---
+import type { SiteSettings } from '@/types/wordpress';
+import { cn } from '@/lib/utils';
+import Icon from '@/components/ui/Icon.astro';
+import Logo from '@/components/ui/Logo.astro';
+
+export interface Props {
+  settings: SiteSettings;
+}
+
+const { settings } = Astro.props;
+const { primaryNav, ctaNav } = settings;
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isActive = (href: string) => {
+  const clean = href.replace(/\/+$/, '') || '/';
+  if (clean === '/') return currentPath === '/';
+  return currentPath === clean || currentPath.startsWith(`${clean}/`);
+};
+---
+
+<header class="absolute inset-x-0 top-0 z-50">
+  <div class="container-page">
+    <nav
+      aria-label="Primary"
+      class="bg-steel-100/85 shadow-card mt-5 flex h-[68px] items-center justify-between gap-4 rounded-xl pr-2.5 pl-5 backdrop-blur-md"
+    >
+      <a href="/" class="flex shrink-0 items-center" aria-label={`${settings.siteName} — home`}>
+        <Logo variant="nav" />
+      </a>
+
+      <ul class="hidden items-center gap-1 lg:flex">
+        {
+          primaryNav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class={cn(
+                  'font-heading rounded-md px-3.5 py-2 text-sm font-semibold tracking-wide uppercase transition-colors duration-200',
+                  isActive(item.href) ? 'text-cyan-500' : 'text-navy-950 hover:text-cyan-500',
+                )}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="hidden items-center gap-2.5 lg:flex">
+        <a
+          href={ctaNav.signIn.href}
+          class="font-heading text-navy-950 shadow-soft hover:shadow-card inline-flex h-12 items-center rounded-lg bg-cyan-400 px-6 text-sm font-semibold tracking-wide uppercase transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300"
+        >
+          {ctaNav.signIn.label}
+        </a>
+        <a
+          href={ctaNav.register.href}
+          class="bg-navy-950 font-heading shadow-soft hover:bg-navy-900 hover:shadow-card inline-flex h-12 items-center rounded-lg px-6 text-sm font-semibold tracking-wide text-white uppercase transition-all duration-200 hover:-translate-y-0.5"
+        >
+          {ctaNav.register.label}
+        </a>
+      </div>
+
+      <button
+        type="button"
+        class="text-navy-950 hover:bg-navy-950/5 inline-flex size-11 items-center justify-center rounded-lg transition-colors lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="Open menu"
+        data-nav-toggle
+      >
+        <Icon name="menu" size={26} class="[[aria-expanded=true]_&]:hidden" />
+        <Icon name="x" size={26} class="hidden [[aria-expanded=true]_&]:block" />
+      </button>
+    </nav>
+
+    <div
+      id="mobile-nav"
+      class="bg-steel-100/95 shadow-card mt-2 hidden rounded-xl p-4 backdrop-blur-md lg:hidden"
+      data-nav-panel
+    >
+      <ul class="flex flex-col gap-1">
+        {
+          primaryNav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class={cn(
+                  'font-heading block rounded-md px-4 py-3 text-base font-semibold tracking-wide uppercase transition-colors',
+                  isActive(item.href) ? 'text-cyan-500' : 'text-navy-950 hover:bg-navy-950/5',
+                )}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="border-navy-950/10 mt-3 grid grid-cols-2 gap-2.5 border-t pt-4">
+        <a
+          href={ctaNav.signIn.href}
+          class="font-heading text-navy-950 inline-flex h-12 items-center justify-center rounded-lg bg-cyan-400 text-sm font-semibold tracking-wide uppercase"
+        >
+          {ctaNav.signIn.label}
+        </a>
+        <a
+          href={ctaNav.register.href}
+          class="bg-navy-950 font-heading inline-flex h-12 items-center justify-center rounded-lg text-sm font-semibold tracking-wide text-white uppercase"
+        >
+          {ctaNav.register.label}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function initNav() {
+    const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+    const panel = document.querySelector<HTMLElement>('[data-nav-panel]');
+    if (!toggle || !panel) return;
+
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      panel.classList.toggle('hidden', !open);
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  }
+
+  initNav();
+  document.addEventListener('astro:after-swap', initNav);
+</script>

@@ -1,0 +1,48 @@
+---
+import { PUBLIC_TURNSTILE_SITE_KEY } from 'astro:env/client';
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import ContactForm from '@/components/forms/ContactForm';
+import { getPageCopy } from '@/services/wordpress';
+
+const copy = await getPageCopy();
+const contact = copy.contact;
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Contact',
+      item: new URL('/contact', Astro.site).toString(),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Contact — REDI Sites"
+  description="Get in touch with the REDI Sites team to discuss premium commercial development opportunities."
+  structuredData={[breadcrumbLd]}
+>
+  <PageHero
+    kicker={contact.hero.kicker}
+    heading={contact.hero.heading}
+    backgroundImage="/images/hero/construction-hero-bg.jpg"
+  />
+
+  <section class="bg-steel-100 py-16 md:py-20">
+    <div class="container-page">
+      <div class="shadow-card rounded-2xl bg-white p-6 sm:p-10 md:p-14">
+        <ContactForm
+          client:visible
+          turnstileSiteKey={PUBLIC_TURNSTILE_SITE_KEY}
+          copy={contact.form}
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,99 @@
+---
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import Icon from '@/components/ui/Icon.astro';
+import { getAllBlogSlugs, getBlogPostBySlug } from '@/services/wordpress';
+import { formatDate } from '@/utils/format';
+
+export async function getStaticPaths() {
+  const slugs = await getAllBlogSlugs();
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await getBlogPostBySlug(slug!);
+
+if (!post) {
+  return Astro.redirect('/updates');
+}
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  datePublished: post.date,
+  author: { '@type': 'Person', name: post.author.name },
+  image: new URL(post.featuredImage.url, Astro.site).toString(),
+  mainEntityOfPage: new URL(`/updates/${post.slug}`, Astro.site).toString(),
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Latest Updates',
+      item: new URL('/updates', Astro.site).toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: post.title,
+      item: new URL(`/updates/${post.slug}`, Astro.site).toString(),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={`${post.title} — REDI Sites`}
+  description={post.excerpt}
+  image={post.featuredImage.url}
+  type="article"
+  publishedTime={post.date}
+  author={post.author.name}
+  structuredData={[articleLd, breadcrumbLd]}
+>
+  <article class="bg-steel-100 pt-32 pb-20 md:pb-24">
+    <div class="container-page">
+      <a
+        href="/updates"
+        class="font-heading text-ink-800 inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.15em] uppercase transition-colors hover:text-cyan-500"
+      >
+        <Icon name="chevron-left" size={14} />
+        Back
+      </a>
+
+      <p class="font-heading mt-6 text-xs font-semibold tracking-[0.2em] text-cyan-400 uppercase">
+        {post.tags.join(', ')}
+      </p>
+      <h1 class="kicker !text-navy-950 mt-3 sm:!text-5xl">{post.title}</h1>
+      <p class="text-ink-600 mt-5 flex items-center gap-2.5 text-base">
+        <time datetime={post.date}>{formatDate(post.date)}</time>
+        <span aria-hidden="true">•</span>
+        <span>{post.author.name}</span>
+      </p>
+
+      <img
+        src={post.featuredImage.url}
+        alt={post.featuredImage.alt}
+        width="1038"
+        height="560"
+        fetchpriority="high"
+        class="shadow-card mt-8 aspect-[1038/560] w-full rounded-xl object-cover"
+      />
+
+      <div
+        class:list={[
+          'prose-article mt-14 max-w-none',
+          '[&_h2]:font-heading [&_h2]:text-navy-700 [&_h2]:text-4xl [&_h2]:font-bold [&_h2]:uppercase',
+          '[&_h3]:font-heading [&_h3]:text-ink-900 [&_h3]:mt-12 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:uppercase',
+          '[&_p]:text-ink-600 [&_p]:mt-6 [&_p]:text-[15px] [&_p]:leading-relaxed sm:[&_p]:text-base',
+        ]}
+        set:html={post.contentHtml}
+      />
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import { cn } from '@/lib/utils';
+
+/**
+ * Eyebrow + heading + flowing paragraphs, optionally with a side image
+ * (`imageSide`) or full-width text. Used for Mission, Business Model, etc.
+ */
+export interface Props {
+  eyebrow?: string;
+  heading: string;
+  paragraphs: string[];
+  image?: { url: string; alt: string };
+  imageSide?: 'left' | 'right';
+  headingAlign?: 'left' | 'center';
+  class?: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  paragraphs,
+  image,
+  imageSide = 'right',
+  headingAlign = 'left',
+  class: className,
+} = Astro.props;
+---
+
+<section class={cn('bg-steel-100 py-20 md:py-24', className)}>
+  <div class="container-page">
+    <SectionHeading eyebrow={eyebrow} heading={heading} align={headingAlign} />
+    {
+      image ? (
+        <div class="mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div
+            class={cn(
+              'text-ink-600 space-y-6 text-[15px] leading-relaxed sm:text-base',
+              imageSide === 'left' && 'lg:order-2',
+            )}
+          >
+            {paragraphs.map((p) => (
+              <p>{p}</p>
+            ))}
+          </div>
+          <div
+            class={cn(
+              'shadow-card overflow-hidden rounded-xl',
+              imageSide === 'left' && 'lg:order-1',
+            )}
+          >
+            <img
+              src={image.url}
+              alt={image.alt}
+              width="1026"
+              height="550"
+              loading="lazy"
+              decoding="async"
+              class="w-full object-cover"
+            />
+          </div>
+        </div>
+      ) : (
+        <div class="text-ink-600 mt-8 max-w-[1030px] space-y-6 text-[15px] leading-relaxed sm:text-base">
+          {paragraphs.map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      )
+    }
+    <slot />
+  </div>
+</section>

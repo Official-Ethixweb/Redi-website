@@ -1,0 +1,17 @@
+[
+  {
+    "id": "norfolk-southern",
+    "quote": "An example testimonial of a quote from the company.",
+    "personName": "Person Name",
+    "personTitle": "Director of Real Estate",
+    "companyName": "Norfolk Southern Railways",
+    "companyLogo": {
+      "url": "/images/partners/norfolk-southern-logo.png",
+      "alt": "Norfolk Southern Railways"
+    },
+    "backgroundImage": {
+      "url": "/images/hero/testimonial-bg.jpg",
+      "alt": "Norfolk Southern locomotive inside a rail maintenance facility"
+    }
+  }
+]

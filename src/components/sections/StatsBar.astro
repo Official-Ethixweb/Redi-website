@@ -1,0 +1,22 @@
+---
+export interface Props {
+  stats: { value: string; label: string }[];
+}
+
+const { stats } = Astro.props;
+---
+
+<section class="bg-steel-100 pb-20 md:pb-24" aria-label="Company statistics">
+  <div class="container-page">
+    <dl class="bg-navy-950 grid grid-cols-2 gap-y-10 rounded-2xl px-6 py-12 lg:grid-cols-4">
+      {
+        stats.map((stat) => (
+          <div class="text-center">
+            <dd class="font-display text-3xl text-cyan-400 sm:text-4xl">{stat.value}</dd>
+            <dt class="mt-2 text-sm text-white/70 sm:text-base">{stat.label}</dt>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>

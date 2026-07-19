@@ -1,0 +1,102 @@
+---
+import type { SiteSettings } from '@/types/wordpress';
+import Logo from '@/components/ui/Logo.astro';
+
+export interface Props {
+  settings: SiteSettings;
+}
+
+const { settings } = Astro.props;
+const { footer, tagline } = settings;
+---
+
+<footer class="bg-ink-800 text-white">
+  <div class="container-page pt-16 pb-8">
+    <div class="grid gap-12 md:grid-cols-3 md:gap-8">
+      <div>
+        <div class="flex items-start gap-4">
+          <Logo variant="footer" />
+          <div class="border-l border-white/15 pl-4">
+            <p class="font-heading text-sm font-bold text-white">Site Selectors Guild</p>
+            <p
+              class="font-heading mt-1 max-w-[160px] text-sm leading-snug font-medium text-white/85"
+            >
+              {tagline}
+            </p>
+          </div>
+        </div>
+        <p class="mt-6 max-w-[280px] text-sm leading-relaxed text-white/60">{footer.blurb}</p>
+      </div>
+
+      <nav aria-label="Footer sitemap" class="md:text-center">
+        <h2 class="font-heading text-base font-semibold tracking-wide text-white uppercase">
+          Sitemap
+        </h2>
+        <ul class="mt-5 space-y-3.5">
+          {
+            footer.sitemap.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-sm text-white/60 transition-colors duration-200 hover:text-cyan-300"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="md:text-center">
+        <h2 class="font-heading text-base font-semibold tracking-wide text-white uppercase">
+          Contact
+        </h2>
+        <ul class="mt-5 space-y-3.5 text-sm text-white/60">
+          <li>
+            <a
+              href={`mailto:${footer.contact.email}`}
+              class="transition-colors duration-200 hover:text-cyan-300"
+            >
+              {footer.contact.email}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`tel:${footer.contact.phone.replace(/[^\d+]/g, '')}`}
+              class="transition-colors duration-200 hover:text-cyan-300"
+            >
+              {footer.contact.phone}
+            </a>
+          </li>
+          <li>{footer.contact.address}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="bg-ink-700 mt-14 flex flex-col items-center justify-between gap-4 rounded-xl px-6 py-5 sm:flex-row"
+    >
+      <p class="flex items-center gap-2 text-sm text-white/60">
+        <span>{footer.parentCompany.label}</span>
+        <span class="inline-flex items-center gap-1.5 text-white/75">
+          <svg
+            viewBox="0 0 32 24"
+            class="h-4 w-auto fill-current"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M16 0L30 6.5L16 13L2 6.5L16 0Z" fill-opacity="0.55"></path>
+            <path d="M16 8.5L30 15L16 21.5L2 15L16 8.5Z"></path>
+          </svg>
+          <span class="leading-none">
+            <span class="font-heading block text-[13px] font-bold tracking-[0.3em]">STRATA</span>
+            <span class="block text-[6px] tracking-[0.42em]">PLATFORMS</span>
+          </span>
+        </span>
+        <span>Company</span>
+      </p>
+      <p class="text-sm text-white/60">{footer.copyright}</p>
+    </div>
+  </div>
+</footer>

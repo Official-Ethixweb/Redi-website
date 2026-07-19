@@ -1,0 +1,79 @@
+---
+import type { Partner } from '@/types/wordpress';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Icon from '@/components/ui/Icon.astro';
+
+export interface Props {
+  eyebrow: string;
+  heading: string;
+  partners: Partner[];
+}
+
+const { eyebrow, heading, partners } = Astro.props;
+---
+
+<section class="bg-steel-100 py-20 md:py-24">
+  <div class="container-page">
+    <SectionHeading eyebrow={eyebrow} heading={heading} align="center" />
+
+    <ul class="mt-12 grid gap-7 md:grid-cols-2" role="list">
+      {
+        partners.map((partner) => (
+          <li>
+            <article class="group shadow-soft hover:shadow-lifted overflow-hidden rounded-xl transition-all duration-300 ease-out hover:-translate-y-1.5">
+              {partner.variant === 'photo' ? (
+                <div class="relative aspect-[509/115] overflow-hidden">
+                  <img
+                    src={partner.image.url}
+                    alt={partner.image.alt}
+                    width="1018"
+                    height="230"
+                    loading="lazy"
+                    decoding="async"
+                    class="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                </div>
+              ) : (
+                <div class="from-navy-700 to-navy-900 flex aspect-[509/115] items-center justify-center bg-gradient-to-b">
+                  <p class="font-body text-3xl font-semibold text-white">{partner.headline}</p>
+                </div>
+              )}
+              <div class="bg-steel-200 flex items-center gap-2 px-5 py-4">
+                {partner.variant === 'wordmark' ? (
+                  <span class="font-heading text-navy-700 flex items-center gap-1.5 text-sm font-bold tracking-[0.2em] uppercase">
+                    <img
+                      src={partner.image.url}
+                      alt=""
+                      width="22"
+                      height="17"
+                      loading="lazy"
+                      decoding="async"
+                      class="h-4 w-auto"
+                      aria-hidden="true"
+                    />
+                    {partner.name}
+                  </span>
+                ) : (
+                  <span class="font-body text-navy-700 text-xl font-bold">
+                    Location<span class="text-navy-950 font-extrabold">One</span>
+                  </span>
+                )}
+              </div>
+              <div class="bg-steel-200 flex items-center gap-1.5 px-5 pb-4">
+                <Icon name="external-link" size={14} class="text-slate-600" />
+                <a
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-navy-700 text-sm text-slate-600 underline underline-offset-2 transition-colors"
+                >
+                  {new URL(partner.url).hostname.replace('www.', '')}
+                </a>
+              </div>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

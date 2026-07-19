@@ -1,0 +1,48 @@
+---
+/**
+ * Zero-JS icon renderer backed by `lucide-static` (raw SVG source).
+ * Use for any icon that doesn't need interactivity — the vast majority.
+ * For icons inside a React island, prefer importing directly from
+ * `lucide-react` in that island instead of this component.
+ */
+export interface Props {
+  name: string;
+  size?: number;
+  strokeWidth?: number;
+  class?: string;
+  'aria-hidden'?: boolean;
+  title?: string;
+}
+
+const { name, size = 24, strokeWidth, class: className, title } = Astro.props;
+
+let raw: string;
+try {
+  const mod = await import(`../../../node_modules/lucide-static/icons/${name}.svg?raw`);
+  raw = mod.default;
+} catch {
+  throw new Error(`[Icon] Unknown lucide icon "${name}"`);
+}
+
+const isDecorative = title === undefined;
+
+raw = raw
+  .replace(/^<!--.*?-->\s*/s, '')
+  .replace(/\swidth="24"/, ` width="${size}"`)
+  .replace(/\sheight="24"/, ` height="${size}"`)
+  .replace(/class="lucide lucide-[a-z0-9-]+"/, '')
+  .replace(
+    /^<svg/,
+    `<svg class="icon ${className ?? ''}"${isDecorative ? ' aria-hidden="true" focusable="false"' : ' role="img"'}`,
+  );
+
+if (strokeWidth) {
+  raw = raw.replace(/stroke-width="2"/, `stroke-width="${strokeWidth}"`);
+}
+
+if (title) {
+  raw = raw.replace(/(<svg[^>]*>)/, `$1<title>${title}</title>`);
+}
+---
+
+<Fragment set:html={raw} />

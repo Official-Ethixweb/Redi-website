@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /set-password
+Disallow: /sign-in
+
+Sitemap: https://www.redisites.com/sitemap-index.xml

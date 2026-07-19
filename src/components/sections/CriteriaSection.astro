@@ -1,0 +1,45 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import { getScoringCriteria, getPageCopy } from '@/services/wordpress';
+
+const [criteria, copy] = await Promise.all([getScoringCriteria(), getPageCopy()]);
+const c = copy.approach.criteria;
+---
+
+<section class="bg-steel-100 py-20 md:py-24">
+  <div class="container-page">
+    <SectionHeading eyebrow={c.eyebrow} heading={c.heading} />
+
+    <div class="mt-10 grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+      <div class="text-ink-600 text-[15px] leading-relaxed sm:text-base">
+        <p>{c.primaryLabel}</p>
+        <ul class="mt-2 list-disc space-y-1 pl-6">
+          {criteria.primaryCriteria.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="mt-8">{c.eligibleLabel}</p>
+        <ul class="mt-2 list-disc space-y-1 pl-6">
+          {criteria.eligibility.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <figure class="shadow-card overflow-hidden rounded-xl bg-white">
+        <img
+          src="/images/sections/scoring-weights.png"
+          alt="Scoring Weights chart: Utilities 30%, Ownership & Entitlements 20%, Environmental 20%, Ease of Development 15%, Logistics 15%"
+          width="988"
+          height="920"
+          loading="lazy"
+          decoding="async"
+          class="w-full"
+        />
+      </figure>
+    </div>
+
+    <div class="mt-12 text-center">
+      <Button href="/downloads/redi-scoring-scale.pdf" variant="primary" icon="download">
+        {c.downloadLabel}
+      </Button>
+    </div>
+  </div>
+</section>

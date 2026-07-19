@@ -1,0 +1,47 @@
+---
+import { cn } from '@/lib/utils';
+
+/**
+ * REDI Sites stacked wordmark, rebuilt as text so it stays crisp at any size
+ * and inherits theme colors (the supplied PNG crops had opaque backgrounds).
+ * `variant="nav"` = caption + rules, navy REDI. `variant="footer"` = large,
+ * white REDI, no caption.
+ */
+export interface Props {
+  variant?: 'nav' | 'footer' | 'mark';
+  class?: string;
+}
+
+const { variant = 'nav', class: className } = Astro.props;
+---
+
+{
+  variant === 'footer' ? (
+    <span class={cn('inline-flex flex-col leading-none select-none', className)}>
+      <span class="font-display text-[2.6rem] leading-[0.82] tracking-tight text-white">REDI</span>
+      <span class="font-display text-[2.6rem] leading-[0.82] tracking-tight text-cyan-400">
+        SITES<span class="align-super text-[0.85rem] leading-none">™</span>
+      </span>
+    </span>
+  ) : (
+    <span
+      class={cn(
+        'inline-flex flex-col leading-none select-none',
+        variant === 'nav' ? 'w-[64px]' : 'w-[46px]',
+        className,
+      )}
+    >
+      <span class="font-heading text-navy-800 text-[5.5px] font-bold tracking-[0.14em] whitespace-nowrap">
+        SITE SELECTORS GUILD
+      </span>
+      <span class="bg-navy-800 mt-[2px] h-[3.5px] w-full" aria-hidden="true" />
+      <span class="font-display text-navy-800 mt-[1px] text-[19px] leading-[0.88] tracking-tight">
+        REDI
+      </span>
+      <span class="font-display text-[15.5px] leading-[0.9] tracking-tight text-cyan-400">
+        SITES<span class="align-super text-[5px] leading-none">™</span>
+      </span>
+      <span class="mt-[1.5px] h-[3.5px] w-full bg-cyan-400" aria-hidden="true" />
+    </span>
+  )
+}
