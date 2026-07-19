@@ -1,0 +1,53 @@
+---
+import type { Property } from '@/types/wordpress';
+import type { PageCopy } from '@/services/wordpress';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import PropertyCard from '@/components/cards/PropertyCard.astro';
+import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/Icon.astro';
+
+export interface Props {
+  copy: PageCopy['home']['featured'];
+  properties: Property[];
+}
+
+const { copy, properties } = Astro.props;
+---
+
+<section class="bg-steel-100 py-20 md:py-24">
+  <div class="container-page">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <SectionHeading
+        eyebrow={copy.eyebrow}
+        heading={copy.heading}
+        body={copy.body}
+        class="max-w-2xl"
+      />
+      <a
+        href="/sites"
+        class="group font-heading text-navy-700 inline-flex items-center gap-2 text-sm font-semibold tracking-wide uppercase transition-colors hover:text-cyan-500"
+      >
+        {copy.viewAllLabel}
+        <Icon
+          name="chevron-right"
+          size={18}
+          class="transition-transform duration-200 group-hover:translate-x-1"
+        />
+      </a>
+    </div>
+
+    <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
+      {
+        properties.map((property) => (
+          <li>
+            <PropertyCard property={property} />
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-12 text-center">
+      <Button href="/sites" variant="primary" icon="arrow-right">{copy.viewSitesLabel}</Button>
+    </div>
+  </div>
+</section>

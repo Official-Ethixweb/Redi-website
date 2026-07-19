@@ -1,0 +1,26 @@
+[
+  {
+    "id": "terms-of-use",
+    "eyebrow": "Sitewide",
+    "heading": "Terms of Use",
+    "bodyHtml": "<p>Welcome to REDI Sites. By accessing our website, you agree to comply with and be bound by the following terms and conditions. All content provided is for informational purposes only and does not constitute professional advice. We reserve the right to modify or discontinue any part of the site without prior notice. Users agree not to misuse the site or interfere with its operation. REDI Sites is not liable for any damages arising from the use of our services or information. All intellectual property on this site is owned by REDI Sites and may not be used without permission. By using this site, you consent to these terms and our privacy policy.</p>"
+  },
+  {
+    "id": "privacy-policy",
+    "eyebrow": "Sitewide",
+    "heading": "Privacy Policy",
+    "bodyHtml": "<p>At REDI Sites, we prioritize your privacy and are committed to protecting your personal information. This privacy policy explains how we collect, use, and safeguard your data when you use our services.</p><p>We collect information you provide directly, such as contact details and project requirements, to deliver tailored evaluations and support. We also gather data automatically through website interactions to improve user experience.</p><p>Your information is used solely to enhance our services, communicate updates, and comply with legal obligations. We do not share your personal data with third parties without your consent, except as required by law.</p><p>We implement robust security measures to protect your information from unauthorized access or disclosure. You have the right to access, correct, or request deletion of your data at any time.</p><p>By using REDI Sites, you agree to this privacy policy. We may update it periodically, and we encourage you to review it regularly to stay informed about how we protect your privacy.</p>"
+  },
+  {
+    "id": "scoring-terms-of-use",
+    "eyebrow": "Scoring",
+    "heading": "Terms of Use",
+    "bodyHtml": "<p>By using REDI Sites™ and STRATA Platforms® assets, users agree to represent these brands with complete accuracy and honesty at all times. All scoring, evaluations, and data provided through these platforms must be truthful, precise, and free from any form of misrepresentation or exaggeration. Users are expected to utilize company assets responsibly, strictly adhering to their intended purposes while fully respecting all intellectual property rights associated with these brands. Any unauthorized use, modification, or alteration of materials is strictly prohibited and may result in legal consequences. Furthermore, users acknowledge that by complying with these terms, they contribute to preserving the integrity, reliability, and trustworthiness of REDI Sites™ and STRATA Platforms® services, ensuring a fair and transparent experience for all stakeholders involved.</p>"
+  },
+  {
+    "id": "branding-guidelines",
+    "eyebrow": "Scoring",
+    "heading": "Branding Guidelines",
+    "bodyHtml": "<p>All files downloaded and provided by REDI Sites™ are intended solely for non-commercial use by external entities and parties. These files, including scoring logos, are proprietary and must not be commercially distributed, replicated, or used by any organizations other than REDI Sites and Strata Platforms.</p><p>The scoring logos themselves are carefully designed visual representations that accurately reflect the score assigned to a commercial property based on its current condition. These logos are generated through rigorous methodologies developed by REDI Sites and Strata Platforms, ensuring that each score is a reliable indicator of property status. The logos serve as a standardized symbol to communicate property evaluations clearly and consistently across various platforms and reports. Usage of these logos is strictly limited to accurately depicting the assigned score without alteration, and must always adhere to the guidelines and terms set forth by REDI Sites and Strata Platforms.</p><p>Additionally, all other files provided—such as data sets, reports, and analytical tools—are protected under the same non-commercial use policy. No entity other than REDI Sites or Strata Platforms is authorized to distribute, replicate, or utilize these files for commercial purposes. This restriction ensures the integrity and exclusivity of the proprietary information and methodologies contained within these materials. Compliance with the Terms of Use outlined above is mandatory for all users, and any unauthorized commercial use or distribution may result in legal action.</p>"
+  }
+]

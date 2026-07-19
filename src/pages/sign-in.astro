@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import Logo from '@/components/ui/Logo.astro';
+---
+
+<BaseLayout title="Sign In — REDI Sites" description="Sign in to your REDI Sites account." noindex>
+  <section class="bg-steel-100 pt-32 pb-24">
+    <div class="container-page">
+      <div class="mx-auto flex max-w-xl flex-col items-center text-center">
+        <Logo variant="nav" class="scale-125" />
+        <h1 class="mt-8 text-4xl sm:text-[2.75rem]">Sign In</h1>
+        <p class="text-ink-600 mt-3 text-base">
+          The member portal is being connected. In the meantime, reach us directly and we'll get you
+          set up.
+        </p>
+        <div class="mt-8">
+          <Button href="/contact" variant="primary" icon="arrow-right">Contact Us</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

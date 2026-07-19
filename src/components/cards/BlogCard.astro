@@ -1,0 +1,41 @@
+---
+import type { BlogPost } from '@/types/wordpress';
+import { formatDate } from '@/utils/format';
+
+export interface Props {
+  post: BlogPost;
+  loading?: 'eager' | 'lazy';
+}
+
+const { post, loading = 'lazy' } = Astro.props;
+---
+
+<article
+  class="group shadow-soft hover:shadow-lifted relative overflow-hidden rounded-xl transition-all duration-300 ease-out hover:-translate-y-1.5"
+>
+  <a href={`/updates/${post.slug}`} class="absolute inset-0 z-10" aria-label={post.title}></a>
+  <img
+    src={post.featuredImage.url}
+    alt={post.featuredImage.alt}
+    width="666"
+    height="440"
+    loading={loading}
+    decoding="async"
+    class="aspect-[333/220] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+  />
+  <div
+    class="from-steel-100 via-steel-100/90 to-steel-100/0 absolute inset-x-0 bottom-0 bg-gradient-to-t px-4 pt-10 pb-3.5"
+  >
+    <p class="text-navy-700 text-sm font-semibold">{post.tags.join(', ')}</p>
+    <p class="mt-0.5 flex items-center gap-2 text-sm text-slate-600">
+      <time datetime={post.date}>{formatDate(post.date)}</time>
+      <span aria-hidden="true">·</span>
+      <span>{post.author.name}</span>
+    </p>
+    <h3
+      class="font-heading text-ink-800 group-hover:text-navy-700 mt-1 text-base font-bold tracking-normal transition-colors"
+    >
+      {post.title}
+    </h3>
+  </div>
+</article>

@@ -1,0 +1,53 @@
+---
+import { cn } from '@/lib/utils';
+
+/**
+ * Interior page hero: navy gradient over a construction photo strip that
+ * fades to white at the bottom, Bevan cyan kicker + Oswald white heading.
+ * Matches the shared hero treatment on Contact / Sites / Updates / Legal.
+ */
+export interface Props {
+  kicker?: string;
+  heading: string;
+  body?: string;
+  backgroundImage: string;
+  size?: 'default' | 'tall';
+  class?: string;
+}
+
+const { kicker, heading, body, backgroundImage, size = 'default', class: className } = Astro.props;
+---
+
+<section
+  class={cn(
+    'relative isolate flex flex-col justify-center overflow-hidden bg-navy-900',
+    size === 'tall' ? 'min-h-[640px] pt-40 pb-24' : 'min-h-[430px] pt-36 pb-16',
+    className,
+  )}
+>
+  <div class="absolute inset-0 -z-10">
+    <img
+      src={backgroundImage}
+      alt=""
+      class="size-full object-cover"
+      fetchpriority="high"
+      aria-hidden="true"
+    />
+    <div class="from-navy-950/85 via-navy-800/70 to-steel-100 absolute inset-0 bg-gradient-to-b">
+    </div>
+  </div>
+
+  <div class="container-page">
+    <div class="max-w-2xl">
+      {kicker && <p class="kicker mb-3">{kicker}</p>}
+      <h1 class="text-4xl text-white sm:text-5xl md:text-[3.5rem] md:leading-[1.05]">{heading}</h1>
+      {
+        body && (
+          <p class="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">{body}</p>
+        )
+      }
+      <slot />
+    </div>
+    <slot name="aside" />
+  </div>
+</section>

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "prime-locations",
+    "icon": "map-pin",
+    "title": "Prime Locations",
+    "description": "Access to exclusive commercial sites in high-growth markets identified through rigorous analysis and market intelligence."
+  },
+  {
+    "id": "expert-analysis",
+    "icon": "trending-up",
+    "title": "Expert Analysis",
+    "description": "Comprehensive due diligence and market research backed by decades of experience in commercial real estate development."
+  },
+  {
+    "id": "proven-returns",
+    "icon": "shield-check",
+    "title": "Proven Returns",
+    "description": "Track record of successful developments delivering consistent returns and long-term value appreciation for investors."
+  }
+]

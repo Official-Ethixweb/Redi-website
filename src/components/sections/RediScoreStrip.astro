@@ -1,0 +1,42 @@
+---
+import type { ScoreTier } from '@/types/wordpress';
+import type { PageCopy } from '@/services/wordpress';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import ScoreTierCard from '@/components/cards/ScoreTierCard.astro';
+import Button from '@/components/ui/Button.astro';
+
+export interface Props {
+  copy: PageCopy['home']['rediScore'];
+  tiers: ScoreTier[];
+  ctaHref?: string;
+  class?: string;
+}
+
+const { copy, tiers, ctaHref = '/approach', class: className } = Astro.props;
+---
+
+<section class:list={['bg-steel-100 py-20 md:py-24', className]}>
+  <div class="container-page">
+    <SectionHeading eyebrow={copy.eyebrow} heading={copy.heading} body={copy.body} align="center" />
+
+    <ul class="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5" role="list">
+      {
+        tiers.map((tier) => (
+          <li>
+            <ScoreTierCard tier={tier} />
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      copy.ctaLabel && (
+        <div class="mt-12 text-center">
+          <Button href={ctaHref} variant="primary" icon="arrow-right">
+            {copy.ctaLabel}
+          </Button>
+        </div>
+      )
+    }
+  </div>
+</section>

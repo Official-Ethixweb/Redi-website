@@ -1,0 +1,53 @@
+---
+import type { Property } from '@/types/wordpress';
+import Icon from '@/components/ui/Icon.astro';
+
+export interface Props {
+  property: Property;
+  loading?: 'eager' | 'lazy';
+}
+
+const { property, loading = 'lazy' } = Astro.props;
+---
+
+<article
+  class="group bg-steel-200 shadow-soft hover:shadow-lifted relative overflow-hidden rounded-xl transition-all duration-300 ease-out hover:-translate-y-1.5"
+>
+  <div class="relative aspect-[333/118] overflow-hidden">
+    <img
+      src={property.image.url}
+      alt={property.image.alt}
+      width="333"
+      height="112"
+      loading={loading}
+      decoding="async"
+      class="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+    />
+  </div>
+  <div class="flex items-end justify-between gap-3 px-4 pt-3 pb-4">
+    <div class="min-w-0">
+      <p class="flex items-center gap-1.5 text-sm text-slate-600">
+        <Icon name="map-pin" size={15} class="text-navy-700 shrink-0" />
+        <span class="truncate">{property.city}, {property.state}</span>
+        <span aria-hidden="true" class="text-slate-400">·</span>
+        <span class="whitespace-nowrap">{property.acreage} ac</span>
+      </p>
+      <h3 class="font-heading text-ink-800 mt-1 truncate text-base font-bold tracking-normal">
+        {property.title}
+      </h3>
+    </div>
+    {
+      property.tier && (
+        <img
+          src={`/images/badges/${property.tier}.png`}
+          alt={`REDI ${property.tier} designation`}
+          width="76"
+          height="45"
+          loading="lazy"
+          decoding="async"
+          class="w-[68px] shrink-0 rounded-sm"
+        />
+      )
+    }
+  </div>
+</article>

@@ -1,0 +1,127 @@
+---
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import BlogCard from '@/components/cards/BlogCard.astro';
+import Icon from '@/components/ui/Icon.astro';
+import { getBlogPosts, getPageCopy } from '@/services/wordpress';
+
+export const prerender = false;
+
+const copy = await getPageCopy();
+const updates = copy.updates;
+
+const url = Astro.url;
+const search = url.searchParams.get('q') ?? '';
+const sort = url.searchParams.get('sort') === 'oldest' ? 'oldest' : 'recent';
+
+const { items, total } = await getBlogPosts({ search, sort, perPage: 11 });
+
+const gridPosts = items.slice(0, 9);
+const widePosts = items.slice(9);
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Latest Updates',
+      item: new URL('/updates', Astro.site).toString(),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Latest Updates — REDI Sites"
+  description="News, insights, and announcements from REDI Sites and the Site Selectors Guild."
+  structuredData={[breadcrumbLd]}
+>
+  <PageHero
+    kicker={updates.hero.kicker}
+    heading={updates.hero.heading}
+    backgroundImage="/images/hero/construction-hero-bg.jpg"
+  />
+
+  <section class="bg-steel-100 pt-8 pb-20 md:pb-24">
+    <div class="container-page">
+      <form method="get" action="/updates" class="grid gap-4 md:grid-cols-3" role="search">
+        <button
+          type="button"
+          class="text-ink-600 shadow-soft hover:shadow-card flex h-[52px] items-center justify-between rounded-xl bg-white px-5 text-left text-base transition-shadow"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          {updates.filters.filterLabel}
+          <Icon name="funnel" size={18} class="text-ink-600" />
+        </button>
+
+        <input type="hidden" name="sort" value={sort} />
+        <button
+          type="submit"
+          name="sort"
+          value={sort === 'recent' ? 'oldest' : 'recent'}
+          class="text-ink-600 shadow-soft hover:shadow-card flex h-[52px] items-center justify-between rounded-xl bg-white px-5 text-left text-base transition-shadow"
+        >
+          Sort By: {sort === 'recent' ? 'Most Recent First' : 'Oldest First'}
+          <Icon name="arrow-down-narrow-wide" size={18} class="text-ink-600" />
+        </button>
+
+        <div class="relative">
+          <label for="updates-search" class="sr-only">Search updates</label>
+          <input
+            id="updates-search"
+            type="search"
+            name="q"
+            value={search}
+            placeholder={updates.filters.searchPlaceholder}
+            class="text-ink-800 shadow-soft placeholder:text-ink-600 hover:shadow-card h-[52px] w-full rounded-xl bg-white pr-12 pl-5 text-base transition-shadow focus:ring-[3px] focus:ring-cyan-400/40 focus:outline-none"
+          />
+          <button
+            type="submit"
+            class="text-ink-600 hover:text-navy-950 absolute top-1/2 right-4 -translate-y-1/2 transition-colors"
+            aria-label="Search"
+          >
+            <Icon name="search" size={19} />
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-14">
+        <p class="font-heading text-xs font-semibold tracking-[0.2em] text-cyan-400 uppercase">
+          {`${total} ${total === 1 ? 'Result' : 'Results'}`}
+        </p>
+        <h2 class="mt-2 text-3xl sm:text-4xl">{updates.sectionHeading}</h2>
+      </div>
+
+      {
+        items.length === 0 ? (
+          <p class="text-ink-600 mt-10 text-lg">
+            No updates match your search. Try a different term.
+          </p>
+        ) : (
+          <>
+            <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
+              {gridPosts.map((post) => (
+                <li>
+                  <BlogCard post={post} />
+                </li>
+              ))}
+            </ul>
+            {widePosts.length > 0 && (
+              <ul class="mt-6 grid gap-7 md:grid-cols-2" role="list">
+                {widePosts.map((post) => (
+                  <li>
+                    <BlogCard post={post} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

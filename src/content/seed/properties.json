@@ -1,0 +1,86 @@
+[
+  {
+    "id": "midwest-logistics-hub",
+    "slug": "midwest-logistics-hub",
+    "title": "Midwest Logistics Hub",
+    "city": "Dayton",
+    "state": "OH",
+    "acreage": 142,
+    "image": {
+      "url": "/images/sites/dayton-oh.jpg",
+      "alt": "Aerial view of Midwest Logistics Hub in Dayton, Ohio"
+    },
+    "featured": true,
+    "tier": "platinum"
+  },
+  {
+    "id": "gulf-coast-commerce-park",
+    "slug": "gulf-coast-commerce-park",
+    "title": "Gulf Coast Commerce Park",
+    "city": "Houston",
+    "state": "TX",
+    "acreage": 89,
+    "image": {
+      "url": "/images/sites/houston-tx.jpg",
+      "alt": "Site under development at Gulf Coast Commerce Park in Houston, Texas"
+    },
+    "featured": true,
+    "tier": "gold"
+  },
+  {
+    "id": "sunbelt-distribution-center",
+    "slug": "sunbelt-distribution-center",
+    "title": "Sunbelt Distribution Center",
+    "city": "Phoenix",
+    "state": "AZ",
+    "acreage": 210,
+    "image": {
+      "url": "/images/sites/phoenix-az.jpg",
+      "alt": "Interior of Sunbelt Distribution Center warehouse in Phoenix, Arizona"
+    },
+    "featured": true,
+    "tier": "platinum"
+  },
+  {
+    "id": "great-plains-industrial-site",
+    "slug": "great-plains-industrial-site",
+    "title": "Great Plains Industrial Site",
+    "city": "Kansas City",
+    "state": "KS",
+    "acreage": 67,
+    "image": {
+      "url": "/images/sites/kansas-city-ks.jpg",
+      "alt": "Great Plains Industrial Site earthwork in Kansas City, Kansas"
+    },
+    "featured": true,
+    "tier": "silver"
+  },
+  {
+    "id": "appalachian-tech-campus",
+    "slug": "appalachian-tech-campus",
+    "title": "Appalachian Tech Campus",
+    "city": "Raleigh",
+    "state": "NC",
+    "acreage": 55,
+    "image": {
+      "url": "/images/sites/raleigh-nc.jpg",
+      "alt": "Appalachian Tech Campus building exterior in Raleigh, North Carolina"
+    },
+    "featured": true,
+    "tier": "gold"
+  },
+  {
+    "id": "river-bend-commerce-zone",
+    "slug": "river-bend-commerce-zone",
+    "title": "River Bend Commerce Zone",
+    "city": "Springfield",
+    "state": "MO",
+    "acreage": 158,
+    "image": {
+      "url": "/images/sites/springfield-mo.jpg",
+      "alt": "Aerial view of River Bend Commerce Zone in Springfield, Missouri"
+    },
+    "featured": true,
+    "tier": "bronze"
+  }
+]

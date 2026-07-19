@@ -1,0 +1,29 @@
+---
+import type { TeamMember } from '@/types/wordpress';
+
+export interface Props {
+  member: TeamMember;
+}
+
+const { member } = Astro.props;
+---
+
+<article
+  class="group shadow-soft hover:shadow-lifted relative overflow-hidden rounded-xl transition-all duration-300 ease-out hover:-translate-y-1.5"
+>
+  <img
+    src={member.photo.url}
+    alt={member.photo.alt}
+    width="664"
+    height="456"
+    loading="lazy"
+    decoding="async"
+    class="aspect-[332/228] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+  />
+  <div
+    class="from-steel-100 via-steel-100/90 to-steel-100/0 absolute inset-x-0 bottom-0 bg-gradient-to-t px-4 pt-8 pb-3.5"
+  >
+    <p class="text-sm text-slate-600">{member.jobTitle}</p>
+    <h3 class="font-heading text-ink-800 text-base font-bold tracking-normal">{member.name}</h3>
+  </div>
+</article>

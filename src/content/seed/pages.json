@@ -1,0 +1,208 @@
+{
+  "home": {
+    "hero": {
+      "eyebrowBadge": "Site Selectors Guild",
+      "kicker": "Prime Sites",
+      "headline": "Strategic Investments",
+      "body": "Partner with the Site Selectors Guild to unlock premium commercial development opportunities. We identify high-value properties and connect investors with transformative projects across key markets.",
+      "ctaPrimary": { "label": "Search Sites", "href": "/sites" },
+      "ctaSecondary": { "label": "Register Your Site", "href": "/register" },
+      "mapCaption": "Powered by LocationOne",
+      "mapCtaLabel": "View all sites"
+    },
+    "featured": {
+      "eyebrow": "Available Now",
+      "heading": "Featured Sites",
+      "body": "Our comprehensive approach to site selection ensures maximum returns for our investment partners.",
+      "viewAllLabel": "View All",
+      "viewSitesLabel": "View Sites"
+    },
+    "statementOfValue": {
+      "eyebrow": "What We Deliver",
+      "heading": "Statement of Value",
+      "paragraphs": [
+        "At REDI Sites, we specialize in representing the readiness of commercial properties for development, providing clear and transparent evaluations that help streamline project planning. Our expert team assesses key factors such as infrastructure, zoning compliance, and environmental conditions to deliver precise insights that support effective time-to-market strategies.",
+        "By offering detailed reports and ongoing project management support, we help investors and developers reduce uncertainty and accelerate decision-making. Our transparent approach ensures all stakeholders have a clear understanding of site potential and challenges, enabling smoother coordination and faster project execution.",
+        "Choosing REDI Sites means partnering with a team committed to enhancing transparency and efficiency throughout the development process. We empower clients to make informed decisions quickly, minimizing delays and maximizing the value of their commercial real estate investments."
+      ]
+    },
+    "valueCompare": {
+      "available": {
+        "title": "Available",
+        "meansLabel": "Means",
+        "meansItem": "There's a price tag",
+        "doesntTellLabel": "Doesn't tell you",
+        "doesntTellItems": [
+          "Whether utilities can actually serve the site",
+          "If the environmental record is clear",
+          "Whether title and ownership are clean",
+          "What's actually beneath the surface",
+          "How a company gets in and out"
+        ]
+      },
+      "ready": {
+        "title": "Ready",
+        "hasBeenLabel": "Has been independently evaluated on",
+        "items": [
+          { "label": "Utilities", "description": "Confirmed capacity with a path to the site" },
+          { "label": "Environmental", "description": "Record independently reviewed and cleared" },
+          {
+            "label": "Ownership & Entitlements",
+            "description": "Title is clean, authority to sell is documented"
+          },
+          {
+            "label": "Ease of Development",
+            "description": "Ground studied, floodplain mapped, site cleared"
+          },
+          { "label": "Logistics", "description": "Highway access and ingress/egress documented" }
+        ],
+        "footnote": "Visibility matters. But readiness is what gives visibility value."
+      }
+    },
+    "whyChoose": {
+      "eyebrow": "Our Advantage",
+      "heading": "Why Choose REDI Sites",
+      "body": "Our comprehensive approach to site selection ensures maximum returns for our investment partners.",
+      "ctaLabel": "About Us"
+    },
+    "rediScore": {
+      "eyebrow": "Site Rating System",
+      "heading": "The REDI Score",
+      "body": "Every site is rated on a 10-point readiness index measuring infrastructure, zoning, market demand, and development potential.",
+      "ctaLabel": "See More"
+    },
+    "ctaInvest": {
+      "heading": "Ready to Invest?",
+      "body": "Join our network of successful investors and gain access to premium commercial development opportunities.",
+      "ctaLabel": "Contact Us"
+    }
+  },
+  "about": {
+    "hero": {
+      "heading": "About Us",
+      "body": "Partner with the Site Selectors Guild to unlock premium commercial development opportunities. We identify high-value properties and connect investors with transformative projects across key markets.",
+      "image": {
+        "url": "/images/hero/about-inset.jpg",
+        "alt": "Urbanscape leadership team reviewing a development model on a rooftop terrace"
+      }
+    },
+    "mission": {
+      "eyebrow": "What We Do",
+      "heading": "Mission Statement & Goals",
+      "paragraphs": [
+        "At REDI Sites, we are dedicated to providing comprehensive evaluations of commercial properties to assess their readiness for development. Our seasoned team conducts in-depth analyses of critical factors including infrastructure quality, zoning regulations, environmental considerations, and current market demand. We combine data-driven insights with local market expertise to deliver thorough reports that empower investors and developers to make informed decisions.",
+        "Our process begins with a detailed site assessment, examining utilities, transportation access, and compliance with local zoning laws. We then evaluate economic trends and demographic shifts to gauge market potential. By integrating these elements, we identify properties that offer the best opportunities for successful development projects.",
+        "Partnering with REDI Sites means gaining access to exclusive information and expert guidance that reduces risk and accelerates project timelines. We strive to connect our clients with prime commercial sites that align with their strategic goals, ensuring smarter investments and sustainable growth. Trust REDI Sites to be your partner in unlocking the full potential of commercial real estate development."
+      ]
+    },
+    "guildMission": {
+      "heading": "Site Selector's Guild Mission & Vision",
+      "bullets": [
+        "Raising the awareness of the value that professional location strategy and business site selection services create for corporations",
+        "Sharing thought leadership and best practices",
+        "Developing and nurturing relations between Site Selectors Guild members, economic development organizations and corporate stakeholders",
+        "Contributing to policy discussions that affect location strategy and the future of our profession."
+      ],
+      "ctaLabel": "Find A Site Selector | Site Selectors Guild"
+    },
+    "businessModel": {
+      "eyebrow": "What A Site Selector Is",
+      "heading": "Our Business Model",
+      "paragraphs": [
+        "We help businesses find the perfect location for their operations by analyzing factors like infrastructure, labor availability, market access, and regulatory environment.",
+        "Our expert guidance ensures companies choose sites that align with their strategic goals, optimizing costs and operational efficiency. We work closely with stakeholders to evaluate potential locations, providing insights that support informed decisions and successful project outcomes."
+      ]
+    },
+    "team": { "eyebrow": "Who We Are", "heading": "Our Team" },
+    "partners": { "eyebrow": "Who We Are With", "heading": "Our Partners" }
+  },
+  "approach": {
+    "hero": {
+      "kicker": "REDI Scores",
+      "heading": "Our Approach",
+      "body": "REDI (Readiness Evaluation for Development and Investment) Sites is the new national standard in assessing site readiness for U.S. office and industrial projects. Administered by the Site Selectors Guild, REDI Sites provides a searchable database of available sites that have undergone rigorous assessment set by the world's foremost group of site selection consultants.",
+      "image": {
+        "url": "/images/hero/redi-scores-inset.jpg",
+        "alt": "Historic rail depot along active tracks, badged with a REDI Sites Platinum rating"
+      }
+    },
+    "methodology": {
+      "eyebrow": "How It Works",
+      "heading": "REDI Scores Methodology",
+      "paragraphs": [
+        "Businesses and economic development organizations can register for the site readiness program. Applicants will submit various documents and information to be assessed and given a score and designation level (bronze, silver, gold or platinum) based on the site's level of readiness as determined by the Site Selectors Guild. Sites that don't meet the bronze level will receive a designation as an emerging site.",
+        "The designation is valid for one calendar year, and if further actions are taken to increase the site's readiness for development, the site can be resubmitted and redesignated."
+      ],
+      "benefitsLabel": "Designation benefits:",
+      "benefits": [
+        "Listing of your site in a national database, instantly searchable by any SSG member",
+        "Nationally recognized designation for site readiness and include in your marketing materials",
+        "Know how to level up site designation and reapply when more due diligence is completed",
+        "Benefit from the Guild's own marketing of the program to corporations"
+      ]
+    },
+    "criteria": {
+      "eyebrow": "What Is Scored",
+      "heading": "Criteria & Considerations",
+      "primaryLabel": "Primary site review criteria:",
+      "eligibleLabel": "Eligible sites must be:",
+      "downloadLabel": "Download Scoring Scale",
+      "chartTitle": "Scoring Weights"
+    }
+  },
+  "contact": {
+    "hero": { "kicker": "Get In Touch", "heading": "Contact" },
+    "form": {
+      "heading": "Send us a message",
+      "nameLabel": "Full name",
+      "emailLabel": "Email address",
+      "phoneLabel": "Phone (optional)",
+      "messageLabel": "Message",
+      "submitLabel": "Send Message",
+      "successMessage": "Thanks — your message is in. Our team will reply within one business day.",
+      "errorMessage": "Something went wrong sending your message. Please try again or email info@redisites.com directly."
+    }
+  },
+  "sites": {
+    "hero": { "kicker": "View Properties", "heading": "Sites" },
+    "resultsLabelTemplate": "{count} sites by Certified Sites",
+    "favorites": { "addAll": "Add All To Favorites", "removeAll": "Remove All From Favorites" },
+    "toolbar": [
+      "Layers",
+      "Draw",
+      "Heat Maps",
+      "Map Views",
+      "Measure",
+      "Share",
+      "Hide Properties",
+      "Reset"
+    ],
+    "guidanceCta": {
+      "heading": "Want expert guidance on whether this site fits your project?",
+      "body": "Site Selectors Guild members are the world's foremost site selection consultants — and they know this database well.",
+      "ctaLabel": "Find A Site Selector | Site Selectors Guild"
+    }
+  },
+  "updates": {
+    "hero": { "kicker": "Posts & News", "heading": "Latest Updates" },
+    "filters": {
+      "filterLabel": "Filter",
+      "sortLabel": "Sort By: Most Recent First",
+      "searchPlaceholder": "Search Updates..."
+    },
+    "resultsLabelTemplate": "{count} Results",
+    "sectionHeading": "Newsfeed"
+  },
+  "legal": {
+    "hero": { "kicker": "Legalees", "heading": "Terms & Conditions" }
+  },
+  "setPassword": {
+    "heading": "Set Password",
+    "body": "Set your account security.",
+    "passwordLabel": "Password",
+    "confirmLabel": "Confirm Password",
+    "matchLabel": "Passwords Match",
+    "mismatchLabel": "Passwords Do Not Match",
+    "submitLabel": "Set Password"
+  }
+}

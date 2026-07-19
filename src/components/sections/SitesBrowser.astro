@@ -1,0 +1,140 @@
+---
+import Icon from '@/components/ui/Icon.astro';
+import certifiedSites from '@/content/seed/certified-sites.json';
+
+/**
+ * Recreation of the embedded LocationOne certified-sites browser widget:
+ * results header, favorites bar, scrollable site list, and map with tool bar.
+ * The map viewport is a static capture; the surrounding chrome is live HTML.
+ */
+const { totalCount, sourceLabel, items } = certifiedSites;
+
+const tools = [
+  { label: 'Layers', icon: 'layers' },
+  { label: 'Draw', icon: 'pencil' },
+  { label: 'Heat Maps', icon: 'grid-3x3' },
+  { label: 'Map Views', icon: 'map' },
+  { label: 'Measure', icon: 'ruler' },
+  { label: 'Share', icon: 'mail' },
+  { label: 'Hide Properties', icon: 'map-pin' },
+  { label: 'Reset', icon: 'rotate-cw' },
+];
+---
+
+<section class="bg-steel-100 py-16 md:py-20" aria-label="Certified sites browser">
+  <div class="container-page">
+    <div class="shadow-card grid overflow-hidden rounded-xl bg-white lg:grid-cols-[270px_1fr]">
+      <div
+        class="flex max-h-[536px] flex-col border-b border-slate-400/30 lg:border-r lg:border-b-0"
+      >
+        <p
+          class="text-ink-800 border-b border-slate-400/30 px-4 py-3 text-[15px] whitespace-nowrap"
+        >
+          {totalCount} sites by
+          <button type="button" class="text-ink-900 inline-flex items-center gap-1 font-bold">
+            {sourceLabel}
+            <Icon name="chevron-down" size={14} />
+          </button>
+        </p>
+        <div class="flex items-center gap-3 border-b border-slate-400/30 px-3 py-2.5">
+          <button
+            type="button"
+            class="text-ink-600 hover:text-ink-900 inline-flex items-center gap-1 text-xs whitespace-nowrap transition-colors"
+          >
+            <Icon name="heart" size={15} class="fill-amber-400 text-amber-400" />
+            Add All To Favorites
+          </button>
+          <button
+            type="button"
+            class="text-ink-600 hover:text-ink-900 inline-flex items-center gap-1 text-xs whitespace-nowrap transition-colors"
+          >
+            <Icon name="heart" size={15} class="fill-slate-400/60 text-slate-400/60" />
+            Remove All From Favorites
+          </button>
+        </div>
+
+        <ul class="grow divide-y divide-slate-400/25 overflow-y-auto" role="list">
+          {
+            items.map((site) => (
+              <li class="flex gap-3 px-4 py-3.5">
+                <div class="shrink-0">
+                  <img
+                    src={site.thumbnail.url}
+                    alt={site.thumbnail.alt}
+                    width="70"
+                    height="54"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-[54px] w-[70px] rounded-sm border border-slate-400/30 object-cover"
+                  />
+                  {site.hasVideos && (
+                    <p class="bg-navy-800 font-heading mt-0.5 py-0.5 text-center text-[10px] font-semibold tracking-wider text-white uppercase">
+                      Videos
+                    </p>
+                  )}
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-body text-ink-900 text-[15px] leading-snug font-bold tracking-normal normal-case">
+                    {site.name}
+                  </h3>
+                  <p class="text-ink-600 mt-0.5 text-sm">{site.location}</p>
+                  <p class="text-ink-600 text-sm">{site.acres}</p>
+                  <div class="mt-1.5 flex items-center gap-3 text-slate-400">
+                    <button
+                      type="button"
+                      aria-label={`Add ${site.name} to favorites`}
+                      class="hover:text-ink-600 transition-colors"
+                    >
+                      <Icon name="heart" size={15} />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={`Print ${site.name} details`}
+                      class="hover:text-ink-600 transition-colors"
+                    >
+                      <Icon name="printer" size={15} />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={`Open ${site.name} in Google Maps`}
+                      class="hover:text-ink-600 transition-colors"
+                    >
+                      <Icon name="map-pinned" size={15} class="text-amber-400" />
+                    </button>
+                  </div>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="flex flex-col">
+        <ul class="bg-navy-800 flex flex-wrap items-center px-2" role="list" aria-label="Map tools">
+          {
+            tools.map((tool) => (
+              <li>
+                <button
+                  type="button"
+                  class="font-heading inline-flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-semibold tracking-wider text-white uppercase transition-colors hover:bg-white/10"
+                >
+                  <Icon name={tool.icon} size={13} />
+                  {tool.label}
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+        <img
+          src="/images/sections/sites-map.jpg"
+          alt="Interactive map of North America showing clusters of certified sites, with the largest concentrations across the central and eastern United States"
+          width="780"
+          height="506"
+          loading="lazy"
+          decoding="async"
+          class="min-h-0 w-full grow object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+---
+import { buttonVariants, type ButtonVariants } from './button-variants';
+import { cn } from '@/lib/utils';
+import Icon from './Icon.astro';
+
+export interface Props extends ButtonVariants {
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  icon?: string;
+  iconPosition?: 'left' | 'right';
+  external?: boolean;
+  'aria-label'?: string;
+}
+
+const {
+  href,
+  type = 'button',
+  variant,
+  size,
+  class: className,
+  icon,
+  iconPosition = 'right',
+  external = false,
+  ...rest
+} = Astro.props;
+
+const classes = cn(buttonVariants({ variant, size }), className);
+const Tag = href ? 'a' : 'button';
+const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+<Tag class={classes} href={href} type={!href ? type : undefined} {...externalProps} {...rest}>
+  {icon && iconPosition === 'left' && <Icon name={icon} size={18} />}
+  <slot />
+  {icon && iconPosition === 'right' && <Icon name={icon} size={18} />}
+</Tag>

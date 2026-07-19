@@ -1,0 +1,64 @@
+---
+import { cn } from '@/lib/utils';
+
+/**
+ * Standard section header: cyan Oswald eyebrow + large uppercase heading,
+ * optional gray body copy. `align` controls text alignment; `tone` flips
+ * colors for dark backgrounds.
+ */
+export interface Props {
+  eyebrow?: string;
+  heading: string;
+  body?: string;
+  align?: 'left' | 'center';
+  tone?: 'light' | 'dark';
+  level?: 1 | 2 | 3;
+  class?: string;
+  headingClass?: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  body,
+  align = 'left',
+  tone = 'light',
+  level = 2,
+  class: className,
+  headingClass,
+} = Astro.props;
+
+const HeadingTag = `h${level}` as 'h1' | 'h2' | 'h3';
+---
+
+<div class={cn('max-w-3xl', align === 'center' && 'mx-auto text-center', className)}>
+  {
+    eyebrow && (
+      <p class="font-heading mb-2 text-xs font-semibold tracking-[0.2em] text-cyan-400 uppercase">
+        {eyebrow}
+      </p>
+    )
+  }
+  <HeadingTag
+    class={cn(
+      'text-3xl sm:text-4xl md:text-[2.75rem] md:leading-[1.1]',
+      tone === 'dark' && 'text-white',
+      headingClass,
+    )}
+  >
+    {heading}
+  </HeadingTag>
+  {
+    body && (
+      <p
+        class={cn(
+          'mt-4 text-base leading-relaxed sm:text-lg',
+          tone === 'dark' ? 'text-white/75' : 'text-ink-600',
+        )}
+      >
+        {body}
+      </p>
+    )
+  }
+  <slot />
+</div>

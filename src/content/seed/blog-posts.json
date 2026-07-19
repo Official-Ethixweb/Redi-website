@@ -1,0 +1,170 @@
+[
+  {
+    "id": "post-1",
+    "slug": "post-1",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-24",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p><p>Picture a sunny beach day where people build sandcastles and savor ice cream cones. Here, every tree tells a story, and every cloud takes the shape of a different animal.</p><p>Explore this vibrant landscape where laughter echoes and joy is everywhere. Highlights include:</p><p>– Magical creatures like unicorns and playful cats<br>– Treasures hidden at the end of rainbows<br>– Sunny beaches perfect for sandcastles and treats</p><p>Let your imagination run wild in this fantastical realm where anything is possible!</p><h3>Subheading</h3><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p><p>Picture a sunny beach day where people build sandcastles and savor ice cream cones. Here, every tree tells a story, and every cloud takes the shape of a different animal.</p><p>Explore this vibrant landscape where laughter echoes and joy is everywhere. Highlights include:</p><p>– Magical creatures like unicorns and playful cats<br>– Treasures hidden at the end of rainbows<br>– Sunny beaches perfect for sandcastles and treats</p><p>Let your imagination run wild in this fantastical realm where anything is possible!</p><h3>Subheading</h3><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p><p>Picture a sunny beach day where people build sandcastles and savor ice cream cones. Here, every tree tells a story, and every cloud takes the shape of a different animal.</p><p>Explore this vibrant landscape where laughter echoes and joy is everywhere. Highlights include:</p><p>– Magical creatures like unicorns and playful cats<br>– Treasures hidden at the end of rainbows<br>– Sunny beaches perfect for sandcastles and treats</p><p>Let your imagination run wild in this fantastical realm where anything is possible!</p>"
+  },
+  {
+    "id": "post-2",
+    "slug": "post-2",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-23",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  },
+  {
+    "id": "post-3",
+    "slug": "post-3",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-22",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  },
+  {
+    "id": "post-4",
+    "slug": "post-4",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-21",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  },
+  {
+    "id": "post-5",
+    "slug": "post-5",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-20",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  },
+  {
+    "id": "post-6",
+    "slug": "post-6",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-19",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  },
+  {
+    "id": "post-7",
+    "slug": "post-7",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-18",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  },
+  {
+    "id": "post-8",
+    "slug": "post-8",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-17",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  },
+  {
+    "id": "post-9",
+    "slug": "post-9",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-16",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  },
+  {
+    "id": "post-10",
+    "slug": "post-10",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-15",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  },
+  {
+    "id": "post-11",
+    "slug": "post-11",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-14",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  },
+  {
+    "id": "post-12",
+    "slug": "post-12",
+    "title": "Blog Title",
+    "excerpt": "Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes.",
+    "date": "2027-01-13",
+    "author": { "name": "Author Name" },
+    "tags": ["Tag", "Tag", "(cont.)"],
+    "featuredImage": {
+      "url": "/images/blog/steel-frame-card.jpg",
+      "alt": "Steel frame of an industrial building under construction at sunrise"
+    },
+    "contentHtml": "<h2>Heading</h2><p>Imagine a world bursting with colorful balloons, dancing cats, and delicious cupcakes. In this whimsical place, unicorns roam freely, and rainbows lead to treasure chests filled with gold coins.</p>"
+  }
+]

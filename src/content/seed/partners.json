@@ -1,0 +1,22 @@
+[
+  {
+    "id": "locationone",
+    "name": "LocationOne",
+    "url": "https://locationone.com",
+    "image": {
+      "url": "/images/partners/locationone.jpg",
+      "alt": "LocationOne — Showcase Your Property"
+    },
+    "eyebrow": "Maximum Visibility",
+    "headline": "Showcase Your Property",
+    "variant": "photo"
+  },
+  {
+    "id": "strata-platforms",
+    "name": "Strata Platforms",
+    "url": "https://strataplatforms.com",
+    "image": { "url": "/images/partners/strata-mark.svg", "alt": "Strata Platforms" },
+    "headline": "Strata Platforms",
+    "variant": "wordmark"
+  }
+]

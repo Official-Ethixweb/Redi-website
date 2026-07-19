@@ -1,0 +1,34 @@
+---
+import type { AdvantageItem } from '@/types/wordpress';
+import type { PageCopy } from '@/services/wordpress';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import AdvantageCard from '@/components/cards/AdvantageCard.astro';
+import Button from '@/components/ui/Button.astro';
+
+export interface Props {
+  copy: PageCopy['home']['whyChoose'];
+  advantages: AdvantageItem[];
+}
+
+const { copy, advantages } = Astro.props;
+---
+
+<section class="bg-steel-100 py-20 md:py-24">
+  <div class="container-page">
+    <SectionHeading eyebrow={copy.eyebrow} heading={copy.heading} body={copy.body} align="center" />
+
+    <ul class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
+      {
+        advantages.map((advantage) => (
+          <li>
+            <AdvantageCard advantage={advantage} />
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-12 text-center">
+      <Button href="/about" variant="primary" icon="arrow-right">{copy.ctaLabel}</Button>
+    </div>
+  </div>
+</section>

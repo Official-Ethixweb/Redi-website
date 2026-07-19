@@ -1,0 +1,51 @@
+---
+import Button from '@/components/ui/Button.astro';
+
+/**
+ * Full-bleed navy photo CTA ("Ready to Invest?" / "Want expert guidance…").
+ * Used at the bottom of most pages, right above the footer.
+ */
+export interface Props {
+  heading: string;
+  body?: string;
+  ctaLabel: string;
+  ctaHref: string;
+  backgroundImage?: string;
+}
+
+const {
+  heading,
+  body,
+  ctaLabel,
+  ctaHref,
+  backgroundImage = '/images/hero/cta-invest-bg.jpg',
+} = Astro.props;
+---
+
+<section class="bg-navy-900 relative isolate overflow-hidden py-24 md:py-28">
+  <div class="absolute inset-0 -z-10">
+    <img
+      src={backgroundImage}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="size-full object-cover"
+      aria-hidden="true"
+    />
+    <div class="bg-navy-900/80 absolute inset-0"></div>
+  </div>
+
+  <div class="container-page text-center">
+    <h2 class="mx-auto max-w-3xl text-4xl text-balance text-white sm:text-5xl">{heading}</h2>
+    {
+      body && (
+        <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+          {body}
+        </p>
+      )
+    }
+    <div class="mt-9">
+      <Button href={ctaHref} variant="primary">{ctaLabel}</Button>
+    </div>
+  </div>
+</section>

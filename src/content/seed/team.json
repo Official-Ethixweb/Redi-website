@@ -1,0 +1,52 @@
+[
+  {
+    "id": "nicki-dallison",
+    "name": "Nicki Dallison",
+    "jobTitle": "Program Director",
+    "photo": {
+      "url": "/images/team/team-nicki.jpg",
+      "alt": "Portrait of Nicki Dallison, Program Director"
+    },
+    "order": 1
+  },
+  {
+    "id": "team-member-2",
+    "name": "Name",
+    "jobTitle": "Job Role",
+    "photo": {
+      "url": "/images/team/team-generic.jpg",
+      "alt": "Portrait of a REDI Sites team member"
+    },
+    "order": 2
+  },
+  {
+    "id": "team-member-3",
+    "name": "Name",
+    "jobTitle": "Job Role",
+    "photo": {
+      "url": "/images/team/team-generic.jpg",
+      "alt": "Portrait of a REDI Sites team member"
+    },
+    "order": 3
+  },
+  {
+    "id": "team-member-4",
+    "name": "Name",
+    "jobTitle": "Job Role",
+    "photo": {
+      "url": "/images/team/team-generic.jpg",
+      "alt": "Portrait of a REDI Sites team member"
+    },
+    "order": 4
+  },
+  {
+    "id": "team-member-5",
+    "name": "Name",
+    "jobTitle": "Job Role",
+    "photo": {
+      "url": "/images/team/team-generic.jpg",
+      "alt": "Portrait of a REDI Sites team member"
+    },
+    "order": 5
+  }
+]

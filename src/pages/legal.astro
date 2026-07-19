@@ -1,0 +1,55 @@
+---
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import { getLegalSections, getPageCopy } from '@/services/wordpress';
+
+const [copy, sections] = await Promise.all([getPageCopy(), getLegalSections()]);
+const legal = copy.legal;
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Terms & Conditions',
+      item: new URL('/legal', Astro.site).toString(),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Terms & Conditions — REDI Sites"
+  description="Terms of use, privacy policy, and branding guidelines for REDI Sites and Strata Platforms."
+  structuredData={[breadcrumbLd]}
+>
+  <PageHero
+    kicker={legal.hero.kicker}
+    heading={legal.hero.heading}
+    backgroundImage="/images/hero/construction-hero-bg.jpg"
+  />
+
+  <div class="bg-steel-100 py-10">
+    {
+      sections.map((section) => (
+        <section class="py-10 md:py-14" aria-labelledby={`legal-${section.id}`}>
+          <div class="container-page">
+            <p class="font-heading text-xs font-semibold tracking-[0.2em] text-cyan-400 uppercase">
+              {section.eyebrow}
+            </p>
+            <h2 id={`legal-${section.id}`} class="mt-2 text-3xl sm:text-4xl">
+              {section.heading}
+            </h2>
+            <div
+              class="[&_p]:text-ink-600 mt-6 max-w-none [&_p]:mt-5 [&_p]:text-[15px] [&_p]:leading-relaxed sm:[&_p]:text-base"
+              set:html={section.bodyHtml}
+            />
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>
