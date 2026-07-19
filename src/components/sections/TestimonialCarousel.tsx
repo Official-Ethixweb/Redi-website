@@ -59,7 +59,7 @@ export default function TestimonialCarousel({ testimonials }: Props) {
         </motion.div>
       </AnimatePresence>
 
-      <div className="container-page relative flex min-h-[730px] items-center justify-end py-20">
+      <div className="container-page relative flex min-h-[540px] items-center justify-center py-16 sm:min-h-[730px] sm:py-20 lg:justify-end">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.figure
             key={active.id}
