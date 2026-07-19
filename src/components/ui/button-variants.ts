@@ -18,7 +18,7 @@ export const buttonVariants = cva(
         'outline-dark':
           'border-2 border-navy-950/20 bg-transparent text-navy-950 hover:-translate-y-0.5 hover:border-navy-950/40 hover:bg-navy-950/5 active:translate-y-0',
         ghost: 'bg-transparent text-navy-950 hover:bg-navy-950/5',
-        link: 'bg-transparent p-0 text-cyan-500 underline-offset-4 hover:underline',
+        link: 'bg-transparent p-0 text-cyan-600 underline-offset-4 hover:underline',
       },
       size: {
         sm: 'h-10 px-4 text-xs',

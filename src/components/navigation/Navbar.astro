@@ -23,7 +23,7 @@ const isActive = (href: string) => {
   <div class="container-page">
     <nav
       aria-label="Primary"
-      class="bg-steel-100/85 shadow-card mt-5 flex h-[68px] items-center justify-between gap-4 rounded-xl pr-2.5 pl-5 backdrop-blur-md"
+      class="bg-steel-100/95 shadow-card mt-5 flex h-[68px] items-center justify-between gap-4 rounded-xl pr-2.5 pl-5 backdrop-blur-md"
     >
       <a href="/" class="flex shrink-0 items-center" aria-label={`${settings.siteName} — home`}>
         <Logo variant="nav" />
@@ -37,8 +37,11 @@ const isActive = (href: string) => {
                 href={item.href}
                 aria-current={isActive(item.href) ? 'page' : undefined}
                 class={cn(
-                  'font-heading rounded-md px-3.5 py-2 text-sm font-semibold tracking-wide uppercase transition-colors duration-200',
-                  isActive(item.href) ? 'text-cyan-500' : 'text-navy-950 hover:text-cyan-500',
+                  'font-heading relative rounded-md px-3.5 py-2 text-sm font-semibold tracking-wide uppercase transition-colors duration-200',
+                  'after:absolute after:right-3.5 after:bottom-0.5 after:left-3.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-cyan-600 after:transition-transform after:duration-200 hover:after:scale-x-100',
+                  isActive(item.href)
+                    ? 'text-cyan-600 after:scale-x-100'
+                    : 'text-navy-950 hover:text-cyan-600',
                 )}
               >
                 {item.label}
@@ -90,7 +93,7 @@ const isActive = (href: string) => {
                 aria-current={isActive(item.href) ? 'page' : undefined}
                 class={cn(
                   'font-heading block rounded-md px-4 py-3 text-base font-semibold tracking-wide uppercase transition-colors',
-                  isActive(item.href) ? 'text-cyan-500' : 'text-navy-950 hover:bg-navy-950/5',
+                  isActive(item.href) ? 'text-cyan-600' : 'text-navy-950 hover:bg-navy-950/5',
                 )}
               >
                 {item.label}
@@ -121,7 +124,8 @@ const isActive = (href: string) => {
   function initNav() {
     const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
     const panel = document.querySelector<HTMLElement>('[data-nav-panel]');
-    if (!toggle || !panel) return;
+    if (!toggle || !panel || toggle.dataset.bound === 'true') return;
+    toggle.dataset.bound = 'true';
 
     const setOpen = (open: boolean) => {
       toggle.setAttribute('aria-expanded', String(open));
@@ -139,5 +143,5 @@ const isActive = (href: string) => {
   }
 
   initNav();
-  document.addEventListener('astro:after-swap', initNav);
+  document.addEventListener('astro:page-load', initNav);
 </script>

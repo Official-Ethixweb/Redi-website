@@ -2,46 +2,100 @@
 import { cn } from '@/lib/utils';
 
 /**
- * REDI Sites stacked wordmark, rebuilt as text so it stays crisp at any size
- * and inherits theme colors (the supplied PNG crops had opaque backgrounds).
+ * REDI Sites stacked wordmark rendered as an inline SVG graphic — it scales
+ * crisply, inherits the loaded brand webfonts, and is semantically an image
+ * (logotype colors are exempt from text-contrast rules per WCAG 1.4.3).
  * `variant="nav"` = caption + rules, navy REDI. `variant="footer"` = large,
  * white REDI, no caption.
  */
 export interface Props {
-  variant?: 'nav' | 'footer' | 'mark';
+  variant?: 'nav' | 'footer';
   class?: string;
+  /** Accessible name; empty string renders it as decorative. */
+  label?: string;
 }
 
-const { variant = 'nav', class: className } = Astro.props;
+const { variant = 'nav', class: className, label = 'REDI Sites' } = Astro.props;
+const decorative = label === '';
 ---
 
 {
   variant === 'footer' ? (
-    <span class={cn('inline-flex flex-col leading-none select-none', className)}>
-      <span class="font-display text-[2.6rem] leading-[0.82] tracking-tight text-white">REDI</span>
-      <span class="font-display text-[2.6rem] leading-[0.82] tracking-tight text-cyan-400">
-        SITES<span class="align-super text-[0.85rem] leading-none">™</span>
-      </span>
-    </span>
-  ) : (
-    <span
-      class={cn(
-        'inline-flex flex-col leading-none select-none',
-        variant === 'nav' ? 'w-[64px]' : 'w-[46px]',
-        className,
-      )}
+    <svg
+      viewBox="0 0 148 76"
+      class={cn('h-[76px] w-auto select-none', className)}
+      role={decorative ? undefined : 'img'}
+      aria-label={decorative ? undefined : label}
+      aria-hidden={decorative ? 'true' : undefined}
     >
-      <span class="font-heading text-navy-800 text-[5.5px] font-bold tracking-[0.14em] whitespace-nowrap">
-        SITE SELECTORS GUILD
-      </span>
-      <span class="bg-navy-800 mt-[2px] h-[3.5px] w-full" aria-hidden="true" />
-      <span class="font-display text-navy-800 mt-[1px] text-[19px] leading-[0.88] tracking-tight">
+      <text
+        x="0"
+        y="32"
+        font-family="Bevan, serif"
+        font-size="41.6"
+        letter-spacing="-1"
+        fill="#ffffff"
+      >
         REDI
-      </span>
-      <span class="font-display text-[15.5px] leading-[0.9] tracking-tight text-cyan-400">
-        SITES<span class="align-super text-[5px] leading-none">™</span>
-      </span>
-      <span class="mt-[1.5px] h-[3.5px] w-full bg-cyan-400" aria-hidden="true" />
-    </span>
+      </text>
+      <text
+        x="0"
+        y="66"
+        font-family="Bevan, serif"
+        font-size="41.6"
+        letter-spacing="-1"
+        fill="var(--color-cyan-400)"
+      >
+        SITES
+      </text>
+      <text x="138" y="44" font-family="Bevan, serif" font-size="9" fill="var(--color-cyan-400)">
+        ™
+      </text>
+    </svg>
+  ) : (
+    <svg
+      viewBox="0 0 64 52"
+      class={cn('h-[52px] w-[64px] select-none', className)}
+      role={decorative ? undefined : 'img'}
+      aria-label={decorative ? undefined : label}
+      aria-hidden={decorative ? 'true' : undefined}
+    >
+      <text
+        x="0"
+        y="5.5"
+        font-family="'Oswald Variable', Oswald, sans-serif"
+        font-weight="700"
+        font-size="5.3"
+        letter-spacing="0.55"
+        fill="var(--color-navy-800)"
+      >
+        SITE SELECTORS GUILD
+      </text>
+      <rect x="0" y="8" width="64" height="3.5" fill="var(--color-navy-800)" />
+      <text
+        x="-0.5"
+        y="28.5"
+        font-family="Bevan, serif"
+        font-size="19"
+        letter-spacing="-0.5"
+        fill="var(--color-navy-800)"
+      >
+        REDI
+      </text>
+      <text
+        x="-0.5"
+        y="43.5"
+        font-family="Bevan, serif"
+        font-size="15.5"
+        letter-spacing="-0.4"
+        fill="var(--color-cyan-400)"
+      >
+        SITES
+      </text>
+      <text x="55" y="34" font-family="Bevan, serif" font-size="4.5" fill="var(--color-cyan-400)">
+        ™
+      </text>
+      <rect x="0" y="46.5" width="64" height="3.5" fill="var(--color-cyan-400)" />
+    </svg>
   )
 }

@@ -42,6 +42,11 @@ export async function getBlogPosts(query: BlogQuery = {}) {
   return { items, total, page, perPage, totalPages: Math.max(1, Math.ceil(total / perPage)) };
 }
 
+export async function getAllBlogTags(): Promise<string[]> {
+  const posts = await getAllPosts();
+  return [...new Set(posts.flatMap((p) => p.tags))].sort((a, b) => a.localeCompare(b));
+}
+
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
   const posts = await getAllPosts();
   return posts.find((p) => p.slug === slug);

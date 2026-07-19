@@ -31,10 +31,15 @@ const {
 const HeadingTag = `h${level}` as 'h1' | 'h2' | 'h3';
 ---
 
-<div class={cn('max-w-3xl', align === 'center' && 'mx-auto text-center', className)}>
+<div class={cn('reveal max-w-3xl', align === 'center' && 'mx-auto text-center', className)}>
   {
     eyebrow && (
-      <p class="font-heading mb-2 text-xs font-semibold tracking-[0.2em] text-cyan-400 uppercase">
+      <p
+        class={cn(
+          'font-heading mb-2 text-xs font-semibold tracking-[0.2em] uppercase',
+          tone === 'dark' ? 'text-cyan-300' : 'text-cyan-600',
+        )}
+      >
         {eyebrow}
       </p>
     )

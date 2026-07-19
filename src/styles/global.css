@@ -18,6 +18,9 @@
   --color-navy-700: #1c4569;
   --color-navy-600: #2a5c85;
 
+  /* Darkened cyan for text on light backgrounds (>= 4.5:1 even over the
+     translucent navbar pill when it overlays a navy hero photo). */
+  --color-cyan-600: #146581;
   --color-cyan-500: #1fa9d6;
   --color-cyan-400: #2cc3ec;
   --color-cyan-300: #73d4ee;
@@ -103,11 +106,50 @@
     background: var(--color-cyan-400);
     color: var(--color-navy-950);
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Scroll-reveal entrance. JS adds .is-revealed via IntersectionObserver;
+     stagger children with --reveal-delay. Content stays visible without JS
+     (see <noscript> override in BaseLayout) and with reduced motion. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.45s var(--ease-out-quad),
+      transform 0.45s var(--ease-out-quad);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 
   .kicker {

@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { RESEND_API_KEY, CONTACT_TO_EMAIL, TURNSTILE_SECRET_KEY } from 'astro:env/server';
 import { z } from 'zod';
 import { contactSchema } from '@/lib/validation/contact';
+import { rateLimit } from '@/lib/rate-limit';
 
 export const prerender = false;
 
@@ -26,6 +27,18 @@ async function verifyTurnstile(token: string | undefined, ip: string | null): Pr
 }
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
+  const ip = clientAddress ?? 'unknown';
+  const { allowed, retryAfterSeconds } = rateLimit(`contact:${ip}`, {
+    limit: 5,
+    windowMs: 60_000,
+  });
+  if (!allowed) {
+    return Response.json(
+      { ok: false, error: 'Too many requests. Please wait a moment and try again.' },
+      { status: 429, headers: { 'Retry-After': String(retryAfterSeconds) } },
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();
@@ -52,8 +65,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   if (!RESEND_API_KEY) {
-    // No mail provider configured (e.g. local dev): accept and log instead of failing.
-    console.info('[contact] RESEND_API_KEY not set — message logged only', { name, email });
+    // No mail provider configured (e.g. local dev): accept without persisting.
+    // Never log submitted personal data (name/email/phone/message).
+    console.info('[contact] RESEND_API_KEY not set — submission accepted but not delivered');
     return Response.json({ ok: true });
   }
 

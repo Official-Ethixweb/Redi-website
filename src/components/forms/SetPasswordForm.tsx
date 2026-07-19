@@ -80,7 +80,7 @@ export default function SetPasswordForm({ copy }: Props) {
         <p className="text-ink-600 text-lg">Your password has been set. You can now sign in.</p>
         <a
           href="/sign-in"
-          className="font-heading text-sm font-semibold tracking-wide text-cyan-500 uppercase underline-offset-4 hover:underline"
+          className="font-heading text-sm font-semibold tracking-wide text-cyan-600 uppercase underline-offset-4 hover:underline"
         >
           Go to sign in
         </a>

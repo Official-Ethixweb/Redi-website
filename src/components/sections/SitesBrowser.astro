@@ -3,11 +3,13 @@ import Icon from '@/components/ui/Icon.astro';
 import certifiedSites from '@/content/seed/certified-sites.json';
 
 /**
- * Recreation of the embedded LocationOne certified-sites browser widget:
- * results header, favorites bar, scrollable site list, and map with tool bar.
- * The map viewport is a static capture; the surrounding chrome is live HTML.
+ * Visual recreation of the embedded LocationOne certified-sites browser.
+ * The widget chrome (toolbar, favorites row, per-site actions) is rendered as
+ * non-interactive decoration — those controls only function inside the real
+ * LocationOne application, which the map links out to. No dead buttons.
  */
 const { totalCount, sourceLabel, items } = certifiedSites;
+const LOCATIONONE_URL = 'https://locationone.com';
 
 const tools = [
   { label: 'Layers', icon: 'layers' },
@@ -23,7 +25,10 @@ const tools = [
 
 <section class="bg-steel-100 py-16 md:py-20" aria-label="Certified sites browser">
   <div class="container-page">
-    <div class="shadow-card grid overflow-hidden rounded-xl bg-white lg:grid-cols-[270px_1fr]">
+    <h2 class="sr-only">Certified sites browser</h2>
+    <div
+      class="shadow-card reveal grid overflow-hidden rounded-xl bg-white lg:grid-cols-[270px_1fr]"
+    >
       <div
         class="flex max-h-[536px] flex-col border-b border-slate-400/30 lg:border-r lg:border-b-0"
       >
@@ -31,29 +36,31 @@ const tools = [
           class="text-ink-800 border-b border-slate-400/30 px-4 py-3 text-[15px] whitespace-nowrap"
         >
           {totalCount} sites by
-          <button type="button" class="text-ink-900 inline-flex items-center gap-1 font-bold">
+          <span class="text-ink-900 inline-flex items-center gap-1 font-bold">
             {sourceLabel}
             <Icon name="chevron-down" size={14} />
-          </button>
+          </span>
         </p>
-        <div class="flex items-center gap-3 border-b border-slate-400/30 px-3 py-2.5">
-          <button
-            type="button"
-            class="text-ink-600 hover:text-ink-900 inline-flex items-center gap-1 text-xs whitespace-nowrap transition-colors"
-          >
+        <div
+          class="text-ink-600 flex items-center gap-3 border-b border-slate-400/30 px-3 py-2.5"
+          aria-hidden="true"
+        >
+          <span class="inline-flex items-center gap-1 text-xs whitespace-nowrap">
             <Icon name="heart" size={15} class="fill-amber-400 text-amber-400" />
             Add All To Favorites
-          </button>
-          <button
-            type="button"
-            class="text-ink-600 hover:text-ink-900 inline-flex items-center gap-1 text-xs whitespace-nowrap transition-colors"
-          >
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs whitespace-nowrap">
             <Icon name="heart" size={15} class="fill-slate-400/60 text-slate-400/60" />
             Remove All From Favorites
-          </button>
+          </span>
         </div>
 
-        <ul class="grow divide-y divide-slate-400/25 overflow-y-auto" role="list">
+        <ul
+          class="grow divide-y divide-slate-400/25 overflow-y-auto focus-visible:ring-[3px] focus-visible:ring-cyan-400 focus-visible:outline-none"
+          role="list"
+          tabindex="0"
+          aria-label="Certified sites list (scrollable)"
+        >
           {
             items.map((site) => (
               <li class="flex gap-3 px-4 py-3.5">
@@ -79,28 +86,10 @@ const tools = [
                   </h3>
                   <p class="text-ink-600 mt-0.5 text-sm">{site.location}</p>
                   <p class="text-ink-600 text-sm">{site.acres}</p>
-                  <div class="mt-1.5 flex items-center gap-3 text-slate-400">
-                    <button
-                      type="button"
-                      aria-label={`Add ${site.name} to favorites`}
-                      class="hover:text-ink-600 transition-colors"
-                    >
-                      <Icon name="heart" size={15} />
-                    </button>
-                    <button
-                      type="button"
-                      aria-label={`Print ${site.name} details`}
-                      class="hover:text-ink-600 transition-colors"
-                    >
-                      <Icon name="printer" size={15} />
-                    </button>
-                    <button
-                      type="button"
-                      aria-label={`Open ${site.name} in Google Maps`}
-                      class="hover:text-ink-600 transition-colors"
-                    >
-                      <Icon name="map-pinned" size={15} class="text-amber-400" />
-                    </button>
+                  <div class="mt-1.5 flex items-center gap-3 text-slate-400" aria-hidden="true">
+                    <Icon name="heart" size={15} />
+                    <Icon name="printer" size={15} />
+                    <Icon name="map-pinned" size={15} class="text-amber-400" />
                   </div>
                 </div>
               </li>
@@ -110,30 +99,41 @@ const tools = [
       </div>
 
       <div class="flex flex-col">
-        <ul class="bg-navy-800 flex flex-wrap items-center px-2" role="list" aria-label="Map tools">
+        <ul class="bg-navy-800 flex flex-wrap items-center px-2" role="list" aria-hidden="true">
           {
             tools.map((tool) => (
               <li>
-                <button
-                  type="button"
-                  class="font-heading inline-flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-semibold tracking-wider text-white uppercase transition-colors hover:bg-white/10"
-                >
+                <span class="font-heading inline-flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-semibold tracking-wider text-white uppercase">
                   <Icon name={tool.icon} size={13} />
                   {tool.label}
-                </button>
+                </span>
               </li>
             ))
           }
         </ul>
-        <img
-          src="/images/sections/sites-map.jpg"
-          alt="Interactive map of North America showing clusters of certified sites, with the largest concentrations across the central and eastern United States"
-          width="780"
-          height="506"
-          loading="lazy"
-          decoding="async"
-          class="min-h-0 w-full grow object-cover"
-        />
+        <a
+          href={LOCATIONONE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative min-h-0 grow"
+          aria-label="Open the full interactive certified sites map on LocationOne (opens in a new tab)"
+        >
+          <img
+            src="/images/sections/sites-map.jpg"
+            alt="Map of North America showing clusters of certified sites, with the largest concentrations across the central and eastern United States"
+            width="780"
+            height="506"
+            loading="lazy"
+            decoding="async"
+            class="size-full object-cover"
+          />
+          <span
+            class="font-heading text-navy-950 shadow-card absolute right-4 bottom-4 inline-flex items-center gap-1.5 rounded-lg bg-white/95 px-4 py-2 text-xs font-semibold tracking-wide uppercase opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+          >
+            <Icon name="external-link" size={14} />
+            Open live map
+          </span>
+        </a>
       </div>
     </div>
   </div>

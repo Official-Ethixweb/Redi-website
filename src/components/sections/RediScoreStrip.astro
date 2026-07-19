@@ -21,8 +21,8 @@ const { copy, tiers, ctaHref = '/approach', class: className } = Astro.props;
 
     <ul class="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5" role="list">
       {
-        tiers.map((tier) => (
-          <li>
+        tiers.map((tier, index) => (
+          <li class="reveal" style={`--reveal-delay: ${index * 60}ms`}>
             <ScoreTierCard tier={tier} />
           </li>
         ))
@@ -34,6 +34,7 @@ const { copy, tiers, ctaHref = '/approach', class: className } = Astro.props;
         <div class="mt-12 text-center">
           <Button href={ctaHref} variant="primary" icon="arrow-right">
             {copy.ctaLabel}
+            <span class="sr-only"> about the REDI Score methodology</span>
           </Button>
         </div>
       )

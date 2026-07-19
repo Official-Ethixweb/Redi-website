@@ -15,7 +15,7 @@ const { copy, compare } = Astro.props;
   <div class="container-page">
     <SectionHeading eyebrow={copy.eyebrow} heading={copy.heading} />
 
-    <div class="mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <div class="reveal mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
       <div class="text-ink-600 space-y-6 text-[15px] leading-relaxed sm:text-base">
         {copy.paragraphs.map((p) => <p>{p}</p>)}
       </div>
@@ -27,17 +27,17 @@ const { copy, compare } = Astro.props;
       >
         <div class="bg-ink-800 p-6 sm:p-7">
           <p
-            class="font-heading text-center text-[10px] font-medium tracking-[0.25em] text-white/50 uppercase"
+            class="font-heading text-center text-[10px] font-medium tracking-[0.25em] text-white/60 uppercase"
           >
             A site that is
           </p>
           <p
-            class="font-heading mt-1 border-b border-white/25 pb-2 text-center text-2xl font-bold tracking-wide text-white/60 uppercase"
+            class="font-heading mt-1 border-b border-white/25 pb-2 text-center text-2xl font-bold tracking-wide text-white/70 uppercase"
           >
             {compare.available.title}
           </p>
           <p
-            class="font-heading mt-4 text-center text-[10px] font-medium tracking-[0.25em] text-white/50 uppercase"
+            class="font-heading mt-4 text-center text-[10px] font-medium tracking-[0.25em] text-white/60 uppercase"
           >
             {compare.available.meansLabel}
           </p>
@@ -47,17 +47,17 @@ const { copy, compare } = Astro.props;
             <Icon name="check" size={13} class="shrink-0 text-white/60" />
             {compare.available.meansItem}
           </p>
-          <p class="mt-4 text-center text-[10px] text-white/40 italic">and that's about it</p>
+          <p class="mt-4 text-center text-[10px] text-white/55 italic">and that's about it</p>
           <p
-            class="font-heading mt-3 text-center text-[10px] font-medium tracking-[0.25em] text-white/50 uppercase"
+            class="font-heading mt-3 text-center text-[10px] font-medium tracking-[0.25em] text-white/60 uppercase"
           >
             {compare.available.doesntTellLabel}
           </p>
           <ul class="mt-2 space-y-1.5">
             {
               compare.available.doesntTellItems.map((item) => (
-                <li class="flex items-start gap-1.5 text-[11px] leading-snug text-white/45">
-                  <Icon name="x" size={11} class="mt-0.5 shrink-0 text-white/35" />
+                <li class="flex items-start gap-1.5 text-[11px] leading-snug text-white/60">
+                  <Icon name="x" size={11} class="mt-0.5 shrink-0 text-white/55" />
                   {item}
                 </li>
               ))
@@ -71,7 +71,7 @@ const { copy, compare } = Astro.props;
 
         <div class="from-navy-700 to-navy-600 bg-gradient-to-b p-6 sm:p-7">
           <p
-            class="font-heading text-center text-[10px] font-medium tracking-[0.25em] text-white/70 uppercase"
+            class="font-heading text-center text-[10px] font-medium tracking-[0.25em] text-white/90 uppercase"
           >
             A site that is
           </p>
@@ -81,7 +81,7 @@ const { copy, compare } = Astro.props;
             {compare.ready.title}
           </p>
           <p
-            class="font-heading mt-4 text-center text-[10px] font-medium tracking-[0.2em] text-white/70 uppercase"
+            class="font-heading mt-4 text-center text-[10px] font-medium tracking-[0.2em] text-white/90 uppercase"
           >
             {compare.ready.hasBeenLabel}
           </p>
@@ -93,7 +93,7 @@ const { copy, compare } = Astro.props;
                     <Icon name="check" size={11} class="shrink-0 text-cyan-300" />
                     {item.label}
                   </p>
-                  <p class="pl-[17px] text-[9px] leading-snug text-white/65">{item.description}</p>
+                  <p class="pl-[17px] text-[9px] leading-snug text-white/80">{item.description}</p>
                 </li>
               ))
             }

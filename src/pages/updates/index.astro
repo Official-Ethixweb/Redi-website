@@ -3,7 +3,7 @@ import BaseLayout from '@/components/layout/BaseLayout.astro';
 import PageHero from '@/components/sections/PageHero.astro';
 import BlogCard from '@/components/cards/BlogCard.astro';
 import Icon from '@/components/ui/Icon.astro';
-import { getBlogPosts, getPageCopy } from '@/services/wordpress';
+import { getAllBlogTags, getBlogPosts, getPageCopy } from '@/services/wordpress';
 
 export const prerender = false;
 
@@ -12,12 +12,39 @@ const updates = copy.updates;
 
 const url = Astro.url;
 const search = url.searchParams.get('q') ?? '';
-const sort = url.searchParams.get('sort') === 'oldest' ? 'oldest' : 'recent';
+// `sort_next` comes from the toggle button; `sort` is the carried-over state.
+const sortParam = url.searchParams.get('sort_next') ?? url.searchParams.get('sort');
+const sort = sortParam === 'oldest' ? 'oldest' : 'recent';
+const allTags = await getAllBlogTags();
+const tagParam = url.searchParams.get('tag');
+const tag = tagParam && allTags.includes(tagParam) ? tagParam : undefined;
 
-const { items, total } = await getBlogPosts({ search, sort, perPage: 11 });
+const pageParam = Number.parseInt(url.searchParams.get('page') ?? '1', 10);
+const currentPage = Number.isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
+
+const { items, total, totalPages } = await getBlogPosts({
+  search,
+  sort,
+  tag,
+  page: currentPage,
+  perPage: 11,
+});
 
 const gridPosts = items.slice(0, 9);
 const widePosts = items.slice(9);
+
+const buildHref = (overrides: { tag?: string | undefined; page?: number }) => {
+  const params = new URLSearchParams();
+  if (search) params.set('q', search);
+  if (sort !== 'recent') params.set('sort', sort);
+  const nextTag = 'tag' in overrides ? overrides.tag : tag;
+  if (nextTag) params.set('tag', nextTag);
+  if (overrides.page && overrides.page > 1) params.set('page', String(overrides.page));
+  const qs = params.toString();
+  return qs ? `/updates?${qs}` : '/updates';
+};
+
+const filterHref = (nextTag: string | undefined) => buildHref({ tag: nextTag, page: 1 });
 
 const breadcrumbLd = {
   '@context': 'https://schema.org',
@@ -48,20 +75,50 @@ const breadcrumbLd = {
   <section class="bg-steel-100 pt-8 pb-20 md:pb-24">
     <div class="container-page">
       <form method="get" action="/updates" class="grid gap-4 md:grid-cols-3" role="search">
-        <button
-          type="button"
-          class="text-ink-600 shadow-soft hover:shadow-card flex h-[52px] items-center justify-between rounded-xl bg-white px-5 text-left text-base transition-shadow"
-          aria-haspopup="listbox"
-          aria-expanded="false"
-        >
-          {updates.filters.filterLabel}
-          <Icon name="funnel" size={18} class="text-ink-600" />
-        </button>
+        <details class="group relative">
+          <summary
+            class="text-ink-600 shadow-soft hover:shadow-card flex h-[52px] cursor-pointer list-none items-center justify-between rounded-xl bg-white px-5 text-left text-base transition-shadow select-none [&::-webkit-details-marker]:hidden"
+          >
+            {tag ? `Filter: ${tag}` : updates.filters.filterLabel}
+            <Icon name="funnel" size={18} class="text-ink-600" />
+          </summary>
+          <ul
+            class="shadow-lifted absolute inset-x-0 top-[58px] z-20 max-h-64 overflow-y-auto rounded-xl bg-white py-2"
+          >
+            <li>
+              <a
+                href={filterHref(undefined)}
+                class:list={[
+                  'hover:bg-steel-100 block px-5 py-2.5 text-sm transition-colors',
+                  tag ? 'text-ink-600' : 'text-navy-700 font-bold',
+                ]}
+              >
+                All updates
+              </a>
+            </li>
+            {
+              allTags.map((t) => (
+                <li>
+                  <a
+                    href={filterHref(t)}
+                    class:list={[
+                      'hover:bg-steel-100 block px-5 py-2.5 text-sm transition-colors',
+                      t === tag ? 'text-navy-700 font-bold' : 'text-ink-600',
+                    ]}
+                  >
+                    {t}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </details>
+        {tag && <input type="hidden" name="tag" value={tag} />}
 
         <input type="hidden" name="sort" value={sort} />
         <button
           type="submit"
-          name="sort"
+          name="sort_next"
           value={sort === 'recent' ? 'oldest' : 'recent'}
           class="text-ink-600 shadow-soft hover:shadow-card flex h-[52px] items-center justify-between rounded-xl bg-white px-5 text-left text-base transition-shadow"
         >
@@ -90,7 +147,7 @@ const breadcrumbLd = {
       </form>
 
       <div class="mt-14">
-        <p class="font-heading text-xs font-semibold tracking-[0.2em] text-cyan-400 uppercase">
+        <p class="font-heading text-xs font-semibold tracking-[0.2em] text-cyan-600 uppercase">
           {`${total} ${total === 1 ? 'Result' : 'Results'}`}
         </p>
         <h2 class="mt-2 text-3xl sm:text-4xl">{updates.sectionHeading}</h2>
@@ -104,20 +161,48 @@ const breadcrumbLd = {
         ) : (
           <>
             <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
-              {gridPosts.map((post) => (
-                <li>
+              {gridPosts.map((post, index) => (
+                <li class="reveal" style={`--reveal-delay: ${(index % 3) * 70}ms`}>
                   <BlogCard post={post} />
                 </li>
               ))}
             </ul>
             {widePosts.length > 0 && (
               <ul class="mt-6 grid gap-7 md:grid-cols-2" role="list">
-                {widePosts.map((post) => (
-                  <li>
+                {widePosts.map((post, index) => (
+                  <li class="reveal" style={`--reveal-delay: ${index * 80}ms`}>
                     <BlogCard post={post} />
                   </li>
                 ))}
               </ul>
+            )}
+            {totalPages > 1 && (
+              <nav
+                aria-label="Updates pagination"
+                class="mt-12 flex items-center justify-center gap-4"
+              >
+                {currentPage > 1 && (
+                  <a
+                    href={buildHref({ page: currentPage - 1 })}
+                    class="font-heading text-navy-950 shadow-soft hover:shadow-card inline-flex h-11 items-center gap-1.5 rounded-lg bg-white px-5 text-sm font-semibold tracking-wide uppercase transition-all hover:-translate-y-0.5"
+                  >
+                    <Icon name="chevron-left" size={16} />
+                    Newer
+                  </a>
+                )}
+                <p class="text-ink-600 text-sm">
+                  Page {currentPage} of {totalPages}
+                </p>
+                {currentPage < totalPages && (
+                  <a
+                    href={buildHref({ page: currentPage + 1 })}
+                    class="font-heading text-navy-950 shadow-soft hover:shadow-card inline-flex h-11 items-center gap-1.5 rounded-lg bg-white px-5 text-sm font-semibold tracking-wide uppercase transition-all hover:-translate-y-0.5"
+                  >
+                    Older
+                    <Icon name="chevron-right" size={16} />
+                  </a>
+                )}
+              </nav>
             )}
           </>
         )

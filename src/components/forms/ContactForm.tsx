@@ -110,7 +110,7 @@ export default function ContactForm({ turnstileSiteKey, copy }: Props) {
         <button
           type="button"
           onClick={() => setStatus('idle')}
-          className="font-heading text-sm font-semibold tracking-wide text-cyan-500 uppercase underline-offset-4 hover:underline"
+          className="font-heading text-sm font-semibold tracking-wide text-cyan-600 uppercase underline-offset-4 hover:underline"
         >
           Send another message
         </button>
