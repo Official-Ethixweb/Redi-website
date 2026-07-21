@@ -85,18 +85,19 @@ const MARKER_SIZE: Record<string, number> = Object.fromEntries(
   }),
 );
 
-/** Light, translucent sage-green glass — genuinely see-through (real alpha
- *  under a backdrop-blur), thin soft border, wide low-opacity ambient shadow. */
+/** True see-through green glass — low enough alpha that the map underneath is
+ *  actually visible through the tint (not just a frosted blur-through), with
+ *  a crisp, clearly-visible white rim. */
 const MARKER_GLASS = {
   restBackground:
-    'radial-gradient(circle at 34% 28%, rgba(255,255,255,0.32), rgba(255,255,255,0) 48%), radial-gradient(circle at 42% 38%, rgba(150,190,168,0.72) 0%, rgba(96,138,114,0.74) 55%, rgba(56,80,66,0.78) 100%)',
+    'radial-gradient(circle at 34% 28%, rgba(255,255,255,0.22), rgba(255,255,255,0) 48%), radial-gradient(circle at 42% 38%, rgba(150,190,168,0.22) 0%, rgba(96,138,114,0.25) 55%, rgba(56,80,66,0.28) 100%)',
   activeBackground:
-    'radial-gradient(circle at 34% 28%, rgba(255,255,255,0.38), rgba(255,255,255,0) 48%), radial-gradient(circle at 42% 38%, rgba(168,205,183,0.76) 0%, rgba(112,155,130,0.78) 55%, rgba(66,92,76,0.82) 100%)',
+    'radial-gradient(circle at 34% 28%, rgba(255,255,255,0.28), rgba(255,255,255,0) 48%), radial-gradient(circle at 42% 38%, rgba(168,205,183,0.28) 0%, rgba(112,155,130,0.31) 55%, rgba(66,92,76,0.34) 100%)',
   restShadow:
-    '0 8px 26px rgba(0,0,0,0.18), inset 0 1px 1px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.12)',
+    '0 8px 26px rgba(0,0,0,0.16), inset 0 1px 1px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.1)',
   hoverShadow:
-    '0 10px 30px rgba(0,0,0,0.24), inset 0 1px 1px rgba(255,255,255,0.36), inset 0 -2px 4px rgba(0,0,0,0.12)',
-  border: 'rgba(255,255,255,0.5)',
+    '0 10px 30px rgba(0,0,0,0.22), inset 0 1px 1px rgba(255,255,255,0.36), inset 0 -2px 4px rgba(0,0,0,0.1)',
+  border: 'rgba(255,255,255,0.92)',
   ripple1: 'rgba(150,195,170,0.55)',
   ripple2: 'rgba(175,205,188,0.4)',
   glow: '#6f9c81',
@@ -308,10 +309,10 @@ function HeroMapMarkerPin({
               width: size,
               height: size,
               background: isActive ? MARKER_GLASS.activeBackground : MARKER_GLASS.restBackground,
-              border: `1.25px solid ${MARKER_GLASS.border}`,
+              border: `1.5px solid ${MARKER_GLASS.border}`,
               boxShadow: showTooltip ? MARKER_GLASS.hoverShadow : MARKER_GLASS.restShadow,
-              backdropFilter: 'blur(6px)',
-              WebkitBackdropFilter: 'blur(6px)',
+              backdropFilter: 'blur(1px)',
+              WebkitBackdropFilter: 'blur(1px)',
             }}
             className="relative grid cursor-pointer place-items-center rounded-full transition-shadow duration-[250ms] ease-out"
           >
