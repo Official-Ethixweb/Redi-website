@@ -85,21 +85,23 @@ const MARKER_SIZE: Record<string, number> = Object.fromEntries(
   }),
 );
 
-/** Figma's premium-glass marker treatment — a highlight blob layered over a
- *  green sphere gradient, plus matching shadow/ripple/glow tones. */
+/** Figma's frosted-glass marker treatment — a translucent, muted-sage fill
+ *  (real alpha, so the map softly shows through under backdrop-blur) with a
+ *  faint highlight and a wide, low-opacity ambient shadow instead of a hard
+ *  drop shadow — reads as acrylic glass, not a glossy button. */
 const MARKER_GLASS = {
   restBackground:
-    'radial-gradient(circle at 32% 26%, rgba(255,255,255,0.45), rgba(255,255,255,0) 42%), radial-gradient(circle at 38% 32%, #5cc49e 0%, #2e8a66 46%, #123d2f 100%)',
+    'radial-gradient(circle at 34% 28%, rgba(255,255,255,0.16), rgba(255,255,255,0) 48%), radial-gradient(circle at 42% 38%, rgba(120,158,136,0.8) 0%, rgba(72,102,86,0.82) 55%, rgba(44,64,54,0.85) 100%)',
   activeBackground:
-    'radial-gradient(circle at 32% 26%, rgba(255,255,255,0.55), rgba(255,255,255,0) 42%), radial-gradient(circle at 38% 32%, #7ee0bb 0%, #3aa378 46%, #155c43 100%)',
+    'radial-gradient(circle at 34% 28%, rgba(255,255,255,0.22), rgba(255,255,255,0) 48%), radial-gradient(circle at 42% 38%, rgba(138,175,153,0.84) 0%, rgba(86,118,100,0.86) 55%, rgba(52,74,62,0.88) 100%)',
   restShadow:
-    '0 3px 10px rgba(0,0,0,0.4), 0 0 0 3px rgba(6,24,47,0.55), inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -3px 5px rgba(0,0,0,0.28)',
+    '0 6px 22px rgba(0,0,0,0.22), inset 0 1px 1px rgba(255,255,255,0.22), inset 0 -2px 4px rgba(0,0,0,0.14)',
   hoverShadow:
-    '0 6px 18px rgba(0,0,0,0.5), 0 0 0 3px rgba(6,24,47,0.55), inset 0 1px 1px rgba(255,255,255,0.6), inset 0 -3px 5px rgba(0,0,0,0.28)',
-  border: 'rgba(255,255,255,0.85)',
-  ripple1: 'rgba(92,196,158,0.7)',
-  ripple2: 'rgba(150,220,190,0.5)',
-  glow: '#2e8a66',
+    '0 8px 26px rgba(0,0,0,0.28), inset 0 1px 1px rgba(255,255,255,0.28), inset 0 -2px 4px rgba(0,0,0,0.14)',
+  border: 'rgba(255,255,255,0.45)',
+  ripple1: 'rgba(140,172,153,0.5)',
+  ripple2: 'rgba(165,190,175,0.35)',
+  glow: '#5f8770',
 } as const;
 
 interface RouteSegment {
@@ -227,9 +229,9 @@ function HeroMapMarkerPin({
         {/* contact shadow — grows on hover/active to simulate the pin lifting */}
         <motion.span
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 -translate-x-1/2 rounded-full bg-black/50 blur-[2px]"
+          className="pointer-events-none absolute left-1/2 -translate-x-1/2 rounded-full bg-black/40 blur-[4px]"
           style={{ top: size / 2 + 5, width: size * 0.7, height: 5 }}
-          animate={{ opacity: showTooltip ? 0.5 : 0.22, scaleX: showTooltip ? 1.15 : 1 }}
+          animate={{ opacity: showTooltip ? 0.35 : 0.14, scaleX: showTooltip ? 1.15 : 1 }}
           transition={{ duration: reduceMotion ? 0 : 0.25 }}
         />
 
@@ -281,10 +283,10 @@ function HeroMapMarkerPin({
           <motion.span
             aria-hidden="true"
             className="pointer-events-none absolute rounded-full blur-md"
-            style={{ width: size + 10, height: size + 10, backgroundColor: MARKER_GLASS.glow }}
+            style={{ width: size + 14, height: size + 14, backgroundColor: MARKER_GLASS.glow }}
             animate={{
               opacity:
-                showTooltip || emphasis === 'focal' ? 0.55 : emphasis === 'neighbor' ? 0.3 : 0.16,
+                showTooltip || emphasis === 'focal' ? 0.4 : emphasis === 'neighbor' ? 0.22 : 0.1,
             }}
             transition={{ duration: reduceMotion ? 0 : 0.25 }}
           />
@@ -302,22 +304,22 @@ function HeroMapMarkerPin({
               event.stopPropagation();
               onSelect(marker);
             }}
-            animate={{ scale: showTooltip ? 1.06 : 1 }}
+            animate={{ scale: showTooltip ? 1.04 : 1 }}
             transition={{ duration: reduceMotion ? 0 : 0.25, ease: EASE_OUT }}
             style={{
               width: size,
               height: size,
               background: isActive ? MARKER_GLASS.activeBackground : MARKER_GLASS.restBackground,
-              border: `2px solid ${MARKER_GLASS.border}`,
+              border: `1.25px solid ${MARKER_GLASS.border}`,
               boxShadow: showTooltip ? MARKER_GLASS.hoverShadow : MARKER_GLASS.restShadow,
-              backdropFilter: 'blur(3px)',
-              WebkitBackdropFilter: 'blur(3px)',
+              backdropFilter: 'blur(6px)',
+              WebkitBackdropFilter: 'blur(6px)',
             }}
             className="relative grid cursor-pointer place-items-center rounded-full transition-shadow duration-[250ms] ease-out"
           >
             <span
-              className="font-heading leading-none font-bold whitespace-nowrap text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]"
-              style={{ fontSize: size * (marker.count.length >= 4 ? 0.3 : 0.36) }}
+              className="font-heading leading-none font-semibold whitespace-nowrap text-white"
+              style={{ fontSize: size * (marker.count.length >= 4 ? 0.27 : 0.32) }}
             >
               {marker.count}
             </span>
@@ -339,7 +341,7 @@ function HeroMapMarkerPin({
                   align === 'center' && 'left-1/2 -translate-x-1/2',
                 )}
               >
-                <p className="font-heading text-sm font-bold tracking-wide text-[#8adcbc]">
+                <p className="font-heading text-sm font-bold tracking-wide text-[#9dc4ac]">
                   {marker.count}{' '}
                   <span className="text-[10px] font-medium tracking-wider text-white/70 uppercase">
                     Sites
