@@ -19,9 +19,11 @@ export interface Props {
   noindex?: boolean;
   /** JSON-LD structured data blocks to inject. */
   structuredData?: Record<string, unknown>[];
+  /** Above-the-fold image URLs to preload (LCP candidates for this page). */
+  preloadImages?: string[];
 }
 
-const { structuredData = [], ...seoProps } = Astro.props;
+const { structuredData = [], preloadImages = [], ...seoProps } = Astro.props;
 const settings = await getSiteSettings();
 
 const organizationLd = {
@@ -58,6 +60,11 @@ const allLd = [organizationLd, ...structuredData];
     {
       [bevanWoff2, oswaldWoff2, nunitoWoff2].map((href) => (
         <link rel="preload" href={href} as="font" type="font/woff2" crossorigin="anonymous" />
+      ))
+    }
+    {
+      preloadImages.map((href) => (
+        <link rel="preload" href={href} as="image" fetchpriority="high" />
       ))
     }
     <ClientRouter />

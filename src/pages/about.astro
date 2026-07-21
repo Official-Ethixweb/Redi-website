@@ -38,12 +38,13 @@ const breadcrumbLd = {
   title="About Us — REDI Sites"
   description="REDI Sites provides comprehensive evaluations of commercial properties to assess their readiness for development, backed by the Site Selectors Guild."
   structuredData={[breadcrumbLd]}
+  preloadImages={['/images/hero/about-hero-bg.webp', '/images/hero/about-hero-inset.webp']}
 >
   <AboutHero
     heading={about.hero.heading}
     body={about.hero.body}
     image={about.hero.image}
-    backgroundImage="/images/hero/about-hero-bg.jpg"
+    backgroundImage="/images/hero/about-hero-bg.webp"
   />
   <ProseSection
     eyebrow={about.mission.eyebrow}
@@ -56,7 +57,7 @@ const breadcrumbLd = {
     heading={about.businessModel.heading}
     paragraphs={about.businessModel.paragraphs}
     image={{
-      url: '/images/sections/business-model.jpg',
+      url: '/images/sections/business-model.webp',
       alt: 'High-rise construction site at sunset with tower cranes',
     }}
   />

@@ -20,15 +20,16 @@ const rangeColor: Record<ScoreTier['tier'], string> = {
 <article
   class="bg-steel-200 shadow-soft hover:shadow-lifted flex flex-col items-center rounded-xl px-4 py-6 text-center transition-all duration-300 ease-out hover:-translate-y-1.5"
 >
-  <img
-    src={tier.badgeImage.url}
-    alt={tier.badgeImage.alt}
-    width="190"
-    height="112"
-    loading="lazy"
-    decoding="async"
-    class="w-[120px]"
-  />
+  <div class="flex h-[104px] items-center justify-center">
+    <img
+      src={tier.badgeImage.url}
+      alt={tier.badgeImage.alt}
+      height="160"
+      loading="lazy"
+      decoding="async"
+      class="max-h-full w-auto"
+    />
+  </div>
   {
     /* Tier-brand colored range — visually part of the badge mark above it
       (WCAG 1.4.3 logotype exemption); the description below repeats the

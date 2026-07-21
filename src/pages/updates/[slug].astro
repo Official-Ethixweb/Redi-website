@@ -77,10 +77,10 @@ const breadcrumbLd = {
       </p>
 
       <img
-        src={post.featuredImage.url}
-        alt={post.featuredImage.alt}
-        width="1038"
-        height="560"
+        src={(post.heroImage ?? post.featuredImage).url}
+        alt={(post.heroImage ?? post.featuredImage).alt}
+        width="1920"
+        height="1030"
         fetchpriority="high"
         class="shadow-card mt-8 aspect-[1038/560] w-full rounded-xl object-cover"
       />

@@ -2,11 +2,10 @@
 import { cn } from '@/lib/utils';
 
 /**
- * REDI Sites stacked wordmark rendered as an inline SVG graphic — it scales
- * crisply, inherits the loaded brand webfonts, and is semantically an image
- * (logotype colors are exempt from text-contrast rules per WCAG 1.4.3).
- * `variant="nav"` = caption + rules, navy REDI. `variant="footer"` = large,
- * white REDI, no caption.
+ * REDI Sites brand wordmark — official production assets.
+ * `variant="nav"`: full stacked lockup with "Site Selectors Guild" caption
+ * and rules (dark, for light surfaces). `variant="footer"`: large two-line
+ * REDI/SITES lockup (light, for dark surfaces).
  */
 export interface Props {
   variant?: 'nav' | 'footer';
@@ -17,85 +16,18 @@ export interface Props {
 
 const { variant = 'nav', class: className, label = 'REDI Sites' } = Astro.props;
 const decorative = label === '';
+
+const asset =
+  variant === 'footer'
+    ? { src: '/images/logos/redi-light.png', width: 480, height: 220, class: 'h-[64px] w-auto' }
+    : { src: '/images/logos/redi-stacked.png', width: 184, height: 144, class: 'h-[52px] w-auto' };
 ---
 
-{
-  variant === 'footer' ? (
-    <svg
-      viewBox="0 0 148 76"
-      class={cn('h-[76px] w-auto select-none', className)}
-      role={decorative ? undefined : 'img'}
-      aria-label={decorative ? undefined : label}
-      aria-hidden={decorative ? 'true' : undefined}
-    >
-      <text
-        x="0"
-        y="32"
-        font-family="Bevan, serif"
-        font-size="41.6"
-        letter-spacing="-1"
-        fill="#ffffff"
-      >
-        REDI
-      </text>
-      <text
-        x="0"
-        y="66"
-        font-family="Bevan, serif"
-        font-size="41.6"
-        letter-spacing="-1"
-        fill="var(--color-cyan-400)"
-      >
-        SITES
-      </text>
-      <text x="138" y="44" font-family="Bevan, serif" font-size="9" fill="var(--color-cyan-400)">
-        ™
-      </text>
-    </svg>
-  ) : (
-    <svg
-      viewBox="0 0 64 52"
-      class={cn('h-[52px] w-[64px] select-none', className)}
-      role={decorative ? undefined : 'img'}
-      aria-label={decorative ? undefined : label}
-      aria-hidden={decorative ? 'true' : undefined}
-    >
-      <text
-        x="0"
-        y="5.5"
-        font-family="'Oswald Variable', Oswald, sans-serif"
-        font-weight="700"
-        font-size="5.3"
-        letter-spacing="0.55"
-        fill="var(--color-navy-800)"
-      >
-        SITE SELECTORS GUILD
-      </text>
-      <rect x="0" y="8" width="64" height="3.5" fill="var(--color-navy-800)" />
-      <text
-        x="-0.5"
-        y="28.5"
-        font-family="Bevan, serif"
-        font-size="19"
-        letter-spacing="-0.5"
-        fill="var(--color-navy-800)"
-      >
-        REDI
-      </text>
-      <text
-        x="-0.5"
-        y="43.5"
-        font-family="Bevan, serif"
-        font-size="15.5"
-        letter-spacing="-0.4"
-        fill="var(--color-cyan-400)"
-      >
-        SITES
-      </text>
-      <text x="55" y="34" font-family="Bevan, serif" font-size="4.5" fill="var(--color-cyan-400)">
-        ™
-      </text>
-      <rect x="0" y="46.5" width="64" height="3.5" fill="var(--color-cyan-400)" />
-    </svg>
-  )
-}
+<img
+  src={asset.src}
+  width={asset.width}
+  height={asset.height}
+  alt={decorative ? '' : label}
+  aria-hidden={decorative ? 'true' : undefined}
+  class={cn('select-none', asset.class, className)}
+/>

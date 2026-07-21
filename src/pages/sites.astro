@@ -28,11 +28,12 @@ const breadcrumbLd = {
   title="Sites — REDI Sites"
   description="Browse thousands of certified commercial development sites across the United States, evaluated for readiness by the Site Selectors Guild."
   structuredData={[breadcrumbLd]}
+  preloadImages={['/images/hero/locations-hero-bg.webp']}
 >
   <PageHero
     kicker={sites.hero.kicker}
     heading={sites.hero.heading}
-    backgroundImage="/images/hero/locations-hero-bg.jpg"
+    backgroundImage="/images/hero/locations-hero-bg.webp"
   />
   <SitesBrowser />
   <CtaBanner
@@ -40,5 +41,6 @@ const breadcrumbLd = {
     body={sites.guidanceCta.body}
     ctaLabel={sites.guidanceCta.ctaLabel}
     ctaHref={SSG_URL}
+    backgroundImage="/images/hero/cta-guidance-bg.webp"
   />
 </BaseLayout>

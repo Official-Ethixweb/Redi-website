@@ -76,9 +76,9 @@ export default function TestimonialCarousel({ testimonials }: Props) {
             <img
               src={active.companyLogo.url}
               alt={active.companyLogo.alt}
-              width={220}
-              height={64}
-              className="h-14 w-auto object-contain mix-blend-multiply"
+              width={440}
+              height={176}
+              className="h-14 w-auto object-contain"
               loading="lazy"
               decoding="async"
             />

@@ -104,6 +104,8 @@ export interface BlogPost {
   author: { name: string };
   tags: string[];
   featuredImage: WPImage;
+  /** Wider crop shown at the top of the article page; falls back to featuredImage. */
+  heroImage?: WPImage;
 }
 
 export interface LegalSection {

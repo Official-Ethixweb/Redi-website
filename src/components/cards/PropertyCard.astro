@@ -13,12 +13,12 @@ const { property, loading = 'lazy' } = Astro.props;
 <article
   class="group bg-steel-200 shadow-soft hover:shadow-lifted relative overflow-hidden rounded-xl transition-all duration-300 ease-out hover:-translate-y-1.5"
 >
-  <div class="relative aspect-[333/118] overflow-hidden">
+  <div class="relative aspect-[666/238] overflow-hidden">
     <img
       src={property.image.url}
       alt={property.image.alt}
-      width="333"
-      height="112"
+      width="666"
+      height="238"
       loading={loading}
       decoding="async"
       class="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
@@ -41,11 +41,10 @@ const { property, loading = 'lazy' } = Astro.props;
         <img
           src={`/images/badges/${property.tier}.png`}
           alt={`REDI ${property.tier} designation`}
-          width="76"
-          height="45"
+          height="160"
           loading="lazy"
           decoding="async"
-          class="w-[68px] shrink-0 rounded-sm"
+          class="h-[52px] w-auto shrink-0"
         />
       )
     }

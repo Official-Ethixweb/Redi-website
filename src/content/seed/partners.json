@@ -4,7 +4,7 @@
     "name": "LocationOne",
     "url": "https://locationone.com",
     "image": {
-      "url": "/images/partners/locationone.jpg",
+      "url": "/images/partners/locationone-banner.webp",
       "alt": "LocationOne — Showcase Your Property"
     },
     "eyebrow": "Maximum Visibility",
@@ -15,7 +15,7 @@
     "id": "strata-platforms",
     "name": "Strata Platforms",
     "url": "https://strataplatforms.com",
-    "image": { "url": "/images/partners/strata-mark.svg", "alt": "Strata Platforms" },
+    "image": { "url": "/images/logos/strata.png", "alt": "Strata Platforms" },
     "headline": "Strata Platforms",
     "variant": "wordmark"
   }

@@ -23,3 +23,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# Raw design source exports (large, not needed in repo — see design-assets/ locally)
+/design-assets/

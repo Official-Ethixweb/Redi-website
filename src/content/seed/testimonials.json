@@ -6,11 +6,11 @@
     "personTitle": "Director of Real Estate",
     "companyName": "Norfolk Southern Railways",
     "companyLogo": {
-      "url": "/images/partners/norfolk-southern-logo.png",
+      "url": "/images/logos/norfolk-southern.png",
       "alt": "Norfolk Southern Railways"
     },
     "backgroundImage": {
-      "url": "/images/hero/testimonial-bg.jpg",
+      "url": "/images/hero/testimonial-bg.webp",
       "alt": "Norfolk Southern locomotive inside a rail maintenance facility"
     }
   }

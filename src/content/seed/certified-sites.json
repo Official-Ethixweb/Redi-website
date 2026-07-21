@@ -8,7 +8,7 @@
       "location": "Ascension Parish, LA",
       "acres": "17,000 Acres",
       "thumbnail": {
-        "url": "/images/sites/list-riverplex.jpg",
+        "url": "/images/sites/list-riverplex.webp",
         "alt": "RiverPlex MegaPark site map"
       },
       "hasVideos": true
@@ -19,7 +19,7 @@
       "location": "Hooks , TX",
       "acres": "12,000 Acres",
       "thumbnail": {
-        "url": "/images/sites/list-texamericas.jpg",
+        "url": "/images/sites/list-texamericas.webp",
         "alt": "TexAmericas Center aerial view"
       },
       "hasVideos": false
@@ -30,7 +30,7 @@
       "location": "Helena, AR",
       "acres": "4,000 Acres",
       "thumbnail": {
-        "url": "/images/sites/list-helena.jpg",
+        "url": "/images/sites/list-helena.webp",
         "alt": "Helena Harbor industrial site plans"
       },
       "hasVideos": false
@@ -41,7 +41,7 @@
       "location": "Laredo, TX",
       "acres": "3,300 Acres",
       "thumbnail": {
-        "url": "/images/sites/list-gateway.jpg",
+        "url": "/images/sites/list-gateway.webp",
         "alt": "Gateway International Rail Park aerial view"
       },
       "hasVideos": false
@@ -52,7 +52,7 @@
       "location": "Wilmington, IL",
       "acres": "2,500 Acres",
       "thumbnail": {
-        "url": "/images/sites/list-elion.jpg",
+        "url": "/images/sites/list-elion.webp",
         "alt": "Elion Logistics Park 55 site rendering"
       },
       "hasVideos": false
@@ -63,7 +63,7 @@
       "location": "Hazen, NV",
       "acres": "2,308 Acres",
       "thumbnail": {
-        "url": "/images/sites/list-dickson.jpg",
+        "url": "/images/sites/list-dickson.webp",
         "alt": "Great Basin Rail Industrial Park site map"
       },
       "hasVideos": false

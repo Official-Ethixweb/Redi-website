@@ -69,7 +69,7 @@ const breadcrumbLd = {
   <PageHero
     kicker={updates.hero.kicker}
     heading={updates.hero.heading}
-    backgroundImage="/images/hero/construction-hero-bg.jpg"
+    backgroundImage="/images/hero/construction-hero-bg.webp"
   />
 
   <section class="bg-steel-100 pt-8 pb-20 md:pb-24">
@@ -171,7 +171,7 @@ const breadcrumbLd = {
               <ul class="mt-6 grid gap-7 md:grid-cols-2" role="list">
                 {widePosts.map((post, index) => (
                   <li class="reveal" style={`--reveal-delay: ${index * 80}ms`}>
-                    <BlogCard post={post} />
+                    <BlogCard post={post} wide />
                   </li>
                 ))}
               </ul>

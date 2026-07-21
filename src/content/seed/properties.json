@@ -7,7 +7,7 @@
     "state": "OH",
     "acreage": 142,
     "image": {
-      "url": "/images/sites/dayton-oh.jpg",
+      "url": "/images/sites/dayton-oh.webp",
       "alt": "Aerial view of Midwest Logistics Hub in Dayton, Ohio"
     },
     "featured": true,
@@ -21,11 +21,11 @@
     "state": "TX",
     "acreage": 89,
     "image": {
-      "url": "/images/sites/houston-tx.jpg",
+      "url": "/images/sites/houston-tx.webp",
       "alt": "Site under development at Gulf Coast Commerce Park in Houston, Texas"
     },
     "featured": true,
-    "tier": "gold"
+    "tier": "emerging"
   },
   {
     "id": "sunbelt-distribution-center",
@@ -35,11 +35,11 @@
     "state": "AZ",
     "acreage": 210,
     "image": {
-      "url": "/images/sites/phoenix-az.jpg",
+      "url": "/images/sites/phoenix-az.webp",
       "alt": "Interior of Sunbelt Distribution Center warehouse in Phoenix, Arizona"
     },
     "featured": true,
-    "tier": "platinum"
+    "tier": "gold"
   },
   {
     "id": "great-plains-industrial-site",
@@ -49,7 +49,7 @@
     "state": "KS",
     "acreage": 67,
     "image": {
-      "url": "/images/sites/kansas-city-ks.jpg",
+      "url": "/images/sites/kansas-city-ks.webp",
       "alt": "Great Plains Industrial Site earthwork in Kansas City, Kansas"
     },
     "featured": true,
@@ -63,11 +63,11 @@
     "state": "NC",
     "acreage": 55,
     "image": {
-      "url": "/images/sites/raleigh-nc.jpg",
+      "url": "/images/sites/raleigh-nc.webp",
       "alt": "Appalachian Tech Campus building exterior in Raleigh, North Carolina"
     },
     "featured": true,
-    "tier": "gold"
+    "tier": "bronze"
   },
   {
     "id": "river-bend-commerce-zone",
@@ -77,10 +77,10 @@
     "state": "MO",
     "acreage": 158,
     "image": {
-      "url": "/images/sites/springfield-mo.jpg",
+      "url": "/images/sites/springfield-mo.webp",
       "alt": "Aerial view of River Bend Commerce Zone in Springfield, Missouri"
     },
     "featured": true,
-    "tier": "bronze"
+    "tier": "gold"
   }
 ]
