@@ -21,7 +21,9 @@ const { kicker, heading, body, backgroundImage, size = 'default', class: classNa
 <section
   class={cn(
     'relative isolate flex flex-col justify-center overflow-hidden bg-navy-900',
-    size === 'tall' ? 'min-h-[640px] pt-40 pb-24' : 'min-h-[430px] pt-36 pb-16',
+    size === 'tall'
+      ? 'min-h-[520px] pt-32 pb-16 sm:min-h-[640px] sm:pt-40 sm:pb-24'
+      : 'min-h-[380px] pt-32 pb-12 sm:min-h-[430px] sm:pt-36 sm:pb-16',
     className,
   )}
 >
