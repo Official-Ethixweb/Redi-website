@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/components/layout/BaseLayout.astro';
 import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/Icon.astro';
 import Logo from '@/components/ui/Logo.astro';
 ---
 
@@ -11,15 +12,36 @@ import Logo from '@/components/ui/Logo.astro';
 >
   <section class="bg-steel-100 pt-32 pb-24">
     <div class="container-page">
-      <div class="mx-auto flex max-w-xl flex-col items-center text-center">
-        <Logo variant="nav" class="scale-125" />
-        <h1 class="mt-8 text-4xl sm:text-[2.75rem]">Register Your Site</h1>
-        <p class="text-ink-600 mt-3 text-base">
-          Site registration for the REDI readiness program opens through our team. Tell us about
-          your property and we'll start the evaluation process.
-        </p>
-        <div class="mt-8">
-          <Button href="/contact" variant="primary" icon="arrow-right">Contact Us</Button>
+      <div
+        class="bg-steel-200/70 shadow-lifted relative mx-auto max-w-[580px] rounded-3xl px-10 py-10 sm:px-12"
+      >
+        <a
+          href="/"
+          class="text-ink-600 hover:text-ink-900 absolute top-8 right-8 transition-colors"
+          aria-label="Close and return home"
+        >
+          <Icon name="x" size={22} />
+        </a>
+        <Logo variant="nav" class="mx-auto" />
+
+        <a
+          href="/sign-in"
+          class="font-heading text-ink-700 hover:text-ink-900 mt-8 inline-flex items-center gap-1 text-sm font-bold tracking-wide uppercase transition-colors"
+        >
+          <Icon name="chevron-left" size={16} />
+          Back
+        </a>
+        <h1 class="mt-1 text-4xl sm:text-[2.75rem]">Sign Up</h1>
+        <p class="text-ink-600 mt-1 text-lg">Access REDI SITES tools &amp; value.</p>
+
+        <div class="mt-6 rounded-2xl bg-white p-8 text-center shadow-sm">
+          <p class="text-ink-600 text-base leading-relaxed">
+            Site registration for the REDI readiness program opens through our team. Tell us about
+            your property and we'll start the evaluation process.
+          </p>
+          <div class="mt-6">
+            <Button href="/contact" variant="primary" icon="arrow-right">Contact Us</Button>
+          </div>
         </div>
       </div>
     </div>

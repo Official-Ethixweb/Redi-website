@@ -9,9 +9,11 @@ export interface Props {
   body: string;
   image: { url: string; alt: string };
   backgroundImage: string;
+  /** Optional tier badge overlaid on the top-right corner of the inset photo. */
+  imageBadge?: { url: string; alt: string };
 }
 
-const { kicker, heading, body, image, backgroundImage } = Astro.props;
+const { kicker, heading, body, image, backgroundImage, imageBadge } = Astro.props;
 ---
 
 <section class="bg-navy-900 relative isolate overflow-hidden pt-32 pb-14 sm:pt-40 sm:pb-20">
@@ -28,7 +30,7 @@ const { kicker, heading, body, image, backgroundImage } = Astro.props;
   </div>
 
   <div class="container-page">
-    <div class="grid items-center gap-12 lg:grid-cols-[1fr_470px] lg:gap-16">
+    <div class="grid items-center gap-12 lg:grid-cols-[1fr_535px] lg:gap-16">
       <div>
         {kicker && <p class="kicker mb-3">{kicker}</p>}
         <h1 class="text-4xl text-white sm:text-5xl md:text-[3.5rem] md:leading-[1.05]">
@@ -36,15 +38,30 @@ const { kicker, heading, body, image, backgroundImage } = Astro.props;
         </h1>
         <p class="mt-7 max-w-lg text-base leading-relaxed text-white/80 sm:text-lg">{body}</p>
       </div>
-      <div class="shadow-lifted overflow-hidden rounded-xl">
-        <img
-          src={image.url}
-          alt={image.alt}
-          width="940"
-          height="540"
-          fetchpriority="high"
-          class="w-full object-cover"
-        />
+      <div
+        class="rounded-2xl border border-white/25 bg-white/[0.06] p-2 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.55)] backdrop-blur-xl"
+      >
+        <div class="relative overflow-hidden rounded-xl ring-1 ring-white/15">
+          <img
+            src={image.url}
+            alt={image.alt}
+            width="940"
+            height="540"
+            fetchpriority="high"
+            class="w-full object-cover"
+          />
+          {
+            imageBadge && (
+              <img
+                src={imageBadge.url}
+                alt={imageBadge.alt}
+                loading="lazy"
+                decoding="async"
+                class="absolute top-4 right-4 h-[68px] w-auto"
+              />
+            )
+          }
+        </div>
       </div>
     </div>
   </div>

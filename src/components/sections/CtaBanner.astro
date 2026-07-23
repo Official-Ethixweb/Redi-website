@@ -36,7 +36,9 @@ const {
   </div>
 
   <div class="container-page reveal text-center">
-    <h2 class="mx-auto max-w-3xl text-4xl text-balance text-white sm:text-5xl">{heading}</h2>
+    <h2 class="mx-auto max-w-2xl text-4xl text-balance text-white sm:text-5xl md:text-[3.25rem]">
+      {heading}
+    </h2>
     {
       body && (
         <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
@@ -45,7 +47,7 @@ const {
       )
     }
     <div class="mt-9">
-      <Button href={ctaHref} variant="primary">{ctaLabel}</Button>
+      <Button href={ctaHref} variant="primary" class="px-9 text-lg">{ctaLabel}</Button>
     </div>
   </div>
 </section>

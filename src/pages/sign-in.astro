@@ -1,23 +1,116 @@
 ---
 import BaseLayout from '@/components/layout/BaseLayout.astro';
-import Button from '@/components/ui/Button.astro';
+import Icon from '@/components/ui/Icon.astro';
 import Logo from '@/components/ui/Logo.astro';
 ---
 
 <BaseLayout title="Sign In — REDI Sites" description="Sign in to your REDI Sites account." noindex>
   <section class="bg-steel-100 pt-32 pb-24">
     <div class="container-page">
-      <div class="mx-auto flex max-w-xl flex-col items-center text-center">
-        <Logo variant="nav" class="scale-125" />
-        <h1 class="mt-8 text-4xl sm:text-[2.75rem]">Sign In</h1>
-        <p class="text-ink-600 mt-3 text-base">
-          The member portal is being connected. In the meantime, reach us directly and we'll get you
-          set up.
+      <div
+        class="bg-steel-200/70 shadow-lifted relative mx-auto max-w-[580px] rounded-3xl px-10 py-10 sm:px-12"
+      >
+        <a
+          href="/"
+          class="text-ink-600 hover:text-ink-900 absolute top-8 right-8 transition-colors"
+          aria-label="Close and return home"
+        >
+          <Icon name="x" size={22} />
+        </a>
+        <Logo variant="nav" class="mx-auto" />
+
+        <h1 class="mt-10 text-4xl sm:text-[2.75rem]">Sign In</h1>
+        <p class="text-ink-600 mt-1 text-lg">Access your REDI SITES dashboard.</p>
+
+        <!-- The member portal backend is still being connected; this form routes to contact. -->
+        <form method="get" action="/contact" class="mt-8" data-signin-form>
+          <label
+            class="font-heading text-ink-900 block text-base font-bold tracking-wide uppercase"
+          >
+            Email
+            <input
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              class="font-body text-ink-900 placeholder:text-ink-600/70 mt-2 block h-14 w-full rounded-2xl border-0 bg-white px-6 text-lg font-normal normal-case shadow-sm focus:ring-2 focus:ring-cyan-400 focus:outline-none"
+            />
+          </label>
+
+          <div class="mt-6 flex items-end justify-between">
+            <span class="font-heading text-ink-900 text-base font-bold tracking-wide uppercase">
+              Password
+            </span>
+            <a
+              href="/forgot-password"
+              class="font-heading inline-flex items-center gap-1 text-sm font-bold tracking-wide text-cyan-500 uppercase transition-colors hover:text-cyan-600"
+            >
+              Forgot Password?
+              <Icon name="chevron-right" size={16} />
+            </a>
+          </div>
+          <div class="relative mt-2">
+            <input
+              type="password"
+              name="password"
+              placeholder="••••••••"
+              data-password-input
+              class="font-body text-ink-900 placeholder:text-ink-600/70 block h-14 w-full rounded-2xl border-0 bg-white px-6 pr-14 text-lg shadow-sm focus:ring-2 focus:ring-cyan-400 focus:outline-none"
+            />
+            <button
+              type="button"
+              data-password-toggle
+              aria-label="Show password"
+              class="text-ink-600 hover:text-ink-900 absolute top-1/2 right-5 -translate-y-1/2 transition-colors"
+            >
+              <Icon name="eye" size={20} />
+            </button>
+          </div>
+
+          <label class="text-ink-700 mt-5 flex items-center gap-2.5 text-base">
+            <input
+              type="checkbox"
+              name="stay"
+              class="text-ink-900 size-5 rounded border-slate-400 focus:ring-cyan-400"
+            />
+            Stay Logged In
+          </label>
+
+          <button
+            type="submit"
+            class="font-heading text-navy-950 shadow-soft hover:shadow-card mt-8 block h-[58px] w-full rounded-2xl bg-cyan-400 text-xl font-semibold tracking-wide uppercase transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300"
+          >
+            Sign In
+          </button>
+        </form>
+
+        <p class="text-ink-600 mt-6 text-right text-base">
+          No Account? —{' '}
+          <a
+            href="/register"
+            class="text-cyan-500 transition-colors hover:text-cyan-600 hover:underline"
+          >
+            Request Access
+          </a>
         </p>
-        <div class="mt-8">
-          <Button href="/contact" variant="primary" icon="arrow-right">Contact Us</Button>
-        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  function initPasswordToggle() {
+    document.querySelectorAll<HTMLButtonElement>('[data-password-toggle]').forEach((btn) => {
+      if (btn.dataset.bound === 'true') return;
+      btn.dataset.bound = 'true';
+      btn.addEventListener('click', () => {
+        const input = btn.parentElement?.querySelector<HTMLInputElement>('[data-password-input]');
+        if (!input) return;
+        const show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+      });
+    });
+  }
+  initPasswordToggle();
+  document.addEventListener('astro:page-load', initPasswordToggle);
+</script>
