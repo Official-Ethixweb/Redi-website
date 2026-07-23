@@ -31,7 +31,9 @@ const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' 
 ---
 
 <Tag class={classes} href={href} type={!href ? type : undefined} {...externalProps} {...rest}>
-  {icon && iconPosition === 'left' && <Icon name={icon} size={18} />}
-  <slot />
-  {icon && iconPosition === 'right' && <Icon name={icon} size={18} />}
+  <span class="relative z-10 inline-flex items-center justify-center gap-2">
+    {icon && iconPosition === 'left' && <Icon name={icon} size={18} />}
+    <slot />
+    {icon && iconPosition === 'right' && <Icon name={icon} size={18} />}
+  </span>
 </Tag>

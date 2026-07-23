@@ -14,14 +14,14 @@ const { footer, tagline } = settings;
   <div class="container-page pt-16 pb-8">
     <div class="grid gap-12 md:grid-cols-3 md:gap-8">
       <div>
-        <div class="flex items-start gap-4">
+        <div class="flex flex-col items-start gap-4 xl:flex-row">
           <Logo variant="footer" />
-          <div class="border-l border-white/15 pl-4">
+          <div class="border-t border-white/15 pt-4 xl:border-t-0 xl:border-l xl:pt-0 xl:pl-4">
             <p class="font-heading text-[17px] font-bold whitespace-nowrap text-white">
               Site Selectors Guild
             </p>
             <p
-              class="font-heading mt-1 max-w-[160px] text-[17px] leading-snug font-medium text-white/85"
+              class="font-heading mt-1 max-w-full text-[17px] leading-snug font-medium text-white/85 xl:max-w-[160px]"
             >
               {tagline}
             </p>

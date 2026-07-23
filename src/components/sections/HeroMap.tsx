@@ -75,6 +75,9 @@ const MARKER_COUNT_MIN = Math.min(...MARKER_COUNT_VALUES);
 const MARKER_COUNT_MAX = Math.max(...MARKER_COUNT_VALUES);
 const MARKER_MIN_SIZE = 34;
 const MARKER_MAX_SIZE = 54;
+/** Marker px sizes above are tuned for this desktop card width; narrower
+ *  cards (mobile) scale markers down proportionally so they don't overlap. */
+const MARKER_SCALE_BASE_WIDTH = 611;
 
 /** Bubble diameter (px) per marker, scaled by sqrt(count) so *area* — not just
  *  diameter — reads proportional to site count, matching the Figma's cluster-map sizing. */
@@ -204,6 +207,7 @@ interface MarkerPinProps {
   reduceMotion: boolean;
   entranceDone: boolean;
   mapScale: MotionValue<number>;
+  markerScale: number;
   onHover: (id: string | null) => void;
   onSelect: (marker: HeroMapMarker) => void;
 }
@@ -216,6 +220,7 @@ function HeroMapMarkerPin({
   reduceMotion,
   entranceDone,
   mapScale,
+  markerScale,
   onHover,
   onSelect,
 }: MarkerPinProps) {
@@ -230,7 +235,7 @@ function HeroMapMarkerPin({
   const delay = entranceDone ? 0 : entranceDelay;
   const dimmedOpacity = emphasis === 'dimmed' ? 0.4 : 1;
   const emphasisScale = emphasis === 'focal' ? 1.08 : 1;
-  const size = MARKER_SIZE[marker.id] ?? MARKER_MIN_SIZE;
+  const size = Math.round((MARKER_SIZE[marker.id] ?? MARKER_MIN_SIZE) * markerScale);
 
   return (
     <div className="absolute" style={{ left: `${marker.x}%`, top: `${marker.y}%` }}>
@@ -445,6 +450,7 @@ export default function HeroMap() {
   const [zoomIndex, setZoomIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [entranceDone, setEntranceDone] = useState(false);
+  const [cardWidth, setCardWidth] = useState<number | null>(null);
 
   const scale = useMotionValue(1);
   const panX = useMotionValue(0);
@@ -491,6 +497,22 @@ export default function HeroMap() {
     mq.addEventListener('change', update);
     return () => mq.removeEventListener('change', update);
   }, []);
+
+  // Marker sizes (MARKER_MIN_SIZE/MAX_SIZE) were tuned for the ~611px desktop
+  // card — without this, markers stay just as large in px when the card
+  // shrinks on mobile, reading as oversized/overlapping.
+  useEffect(() => {
+    const el = outerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      const width = entries[0]?.contentRect.width;
+      if (width) setCardWidth(width);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const markerScale = cardWidth ? clamp(cardWidth / MARKER_SCALE_BASE_WIDTH, 0.6, 1) : 1;
 
   useEffect(() => {
     const target = ZOOM_LEVELS[zoomIndex];
@@ -932,6 +954,7 @@ export default function HeroMap() {
                     reduceMotion={reduceMotion}
                     entranceDone={entranceDone}
                     mapScale={scale}
+                    markerScale={markerScale}
                     onHover={setHoveredId}
                     onSelect={handleSelect}
                   />

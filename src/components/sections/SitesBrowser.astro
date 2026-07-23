@@ -33,7 +33,7 @@ const tools = [
         class="flex max-h-[536px] flex-col border-b border-slate-400/30 lg:border-r lg:border-b-0"
       >
         <p
-          class="text-ink-800 border-b border-slate-400/30 px-4 py-3 text-[15px] whitespace-nowrap"
+          class="text-ink-800 border-b border-slate-400/30 px-4 py-3 text-[15px] whitespace-normal sm:whitespace-nowrap"
         >
           {totalCount} sites by{' '}
           <span class="text-ink-900 inline-flex items-center gap-1 font-bold">
@@ -42,15 +42,19 @@ const tools = [
           </span>
         </p>
         <div
-          class="text-ink-600 flex items-center gap-3 border-b border-slate-400/30 px-3 py-2.5"
+          class="text-ink-600 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-slate-400/30 px-3 py-2.5"
           aria-hidden="true"
         >
-          <span class="inline-flex items-center gap-1 text-xs whitespace-nowrap">
-            <Icon name="heart" size={15} class="fill-amber-400 text-amber-400" />
+          <span
+            class="inline-flex items-center gap-1 text-xs whitespace-normal sm:whitespace-nowrap"
+          >
+            <Icon name="heart" size={15} class="shrink-0 fill-amber-400 text-amber-400" />
             Add All To Favorites
           </span>
-          <span class="inline-flex items-center gap-1 text-xs whitespace-nowrap">
-            <Icon name="heart" size={15} class="fill-slate-400/60 text-slate-400/60" />
+          <span
+            class="inline-flex items-center gap-1 text-xs whitespace-normal sm:whitespace-nowrap"
+          >
+            <Icon name="heart" size={15} class="shrink-0 fill-slate-400/60 text-slate-400/60" />
             Remove All From Favorites
           </span>
         </div>
