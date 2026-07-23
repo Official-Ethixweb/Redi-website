@@ -69,7 +69,7 @@ export default function TestimonialCarousel({ testimonials }: Props) {
             animate="center"
             exit="exit"
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="bg-steel-100 shadow-lifted w-full max-w-[330px] rounded-xl p-8"
+            className="bg-steel-100 shadow-lifted w-full max-w-[360px] rounded-xl p-8"
             aria-roledescription="slide"
             aria-label={`Testimonial ${index + 1} of ${testimonials.length}: ${active.companyName}`}
           >
@@ -78,7 +78,7 @@ export default function TestimonialCarousel({ testimonials }: Props) {
               alt={active.companyLogo.alt}
               width={440}
               height={176}
-              className="h-14 w-auto object-contain"
+              className="h-24 w-auto object-contain"
               loading="lazy"
               decoding="async"
             />
@@ -109,7 +109,7 @@ export default function TestimonialCarousel({ testimonials }: Props) {
           type="button"
           onClick={() => paginate(-1)}
           aria-label="Previous testimonial"
-          className="bg-steel-100/90 text-navy-950 shadow-card absolute top-1/2 left-6 flex size-10 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-200 hover:scale-110 hover:bg-white focus-visible:ring-[3px] focus-visible:ring-cyan-400 sm:left-8 lg:left-10"
+          className="bg-steel-100/90 text-navy-950 shadow-card absolute bottom-10 left-6 flex size-10 items-center justify-center rounded-full transition-all duration-200 hover:scale-110 hover:bg-white focus-visible:ring-[3px] focus-visible:ring-cyan-400 sm:left-8 lg:left-12"
         >
           <ArrowLeft size={20} aria-hidden="true" />
         </button>
@@ -117,7 +117,7 @@ export default function TestimonialCarousel({ testimonials }: Props) {
           type="button"
           onClick={() => paginate(1)}
           aria-label="Next testimonial"
-          className="bg-steel-100/90 text-navy-950 shadow-card absolute top-1/2 right-6 flex size-10 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-200 hover:scale-110 hover:bg-white focus-visible:ring-[3px] focus-visible:ring-cyan-400 sm:right-8 lg:right-10"
+          className="bg-steel-100/90 text-navy-950 shadow-card absolute right-6 bottom-10 flex size-10 items-center justify-center rounded-full transition-all duration-200 hover:scale-110 hover:bg-white focus-visible:ring-[3px] focus-visible:ring-cyan-400 sm:right-8 lg:right-12"
         >
           <ArrowRight size={20} aria-hidden="true" />
         </button>

@@ -15,7 +15,7 @@ const { copy, compare } = Astro.props;
   <div class="container-page">
     <SectionHeading eyebrow={copy.eyebrow} heading={copy.heading} />
 
-    <div class="reveal mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <div class="reveal mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-10">
       <div class="text-ink-600 space-y-6 text-[15px] leading-relaxed sm:text-base">
         {copy.paragraphs.map((p) => <p>{p}</p>)}
       </div>
@@ -25,14 +25,14 @@ const { copy, compare } = Astro.props;
         role="img"
         aria-label="Comparison graphic: a site that is merely Available versus a site that is REDI-evaluated Ready"
       >
-        <div class="bg-ink-800 p-6 sm:p-7">
+        <div class="bg-[#1E2D42] p-5 sm:p-6">
           <p
             class="font-heading text-center text-[10px] font-medium tracking-[0.25em] text-white/60 uppercase"
           >
             A site that is
           </p>
           <p
-            class="font-heading mt-1 border-b border-white/25 pb-2 text-center text-2xl font-bold tracking-wide text-white/70 uppercase"
+            class="font-heading mt-1 border-b border-white/25 pb-2 text-center text-[26px] font-bold tracking-wide text-white/70 uppercase"
           >
             {compare.available.title}
           </p>
@@ -53,11 +53,11 @@ const { copy, compare } = Astro.props;
           >
             {compare.available.doesntTellLabel}
           </p>
-          <ul class="mt-2 space-y-1.5">
+          <ul class="mt-2 space-y-1">
             {
               compare.available.doesntTellItems.map((item) => (
-                <li class="flex items-start gap-1.5 text-[11px] leading-snug text-white/60">
-                  <Icon name="x" size={11} class="mt-0.5 shrink-0 text-white/55" />
+                <li class="flex items-start gap-1.5 text-[10px] leading-snug text-white/60">
+                  <Icon name="x" size={10} class="mt-0.5 shrink-0 text-white/55" />
                   {item}
                 </li>
               ))
@@ -65,40 +65,42 @@ const { copy, compare } = Astro.props;
           </ul>
         </div>
 
-        <div class="bg-navy-800 flex items-center justify-center px-3 py-2 sm:px-2">
+        <div class="flex items-center justify-center bg-[#1B3A6B] px-3 py-2 sm:px-2">
           <span class="font-heading text-2xl font-bold text-cyan-400" aria-hidden="true">≠</span>
         </div>
 
-        <div class="from-navy-700 to-navy-600 bg-gradient-to-b p-6 sm:p-7">
+        <div class="bg-gradient-to-b from-[#0070C0] to-[#0058A0] p-5 sm:p-6">
           <p
             class="font-heading text-center text-[10px] font-medium tracking-[0.25em] text-white/90 uppercase"
           >
             A site that is
           </p>
           <p
-            class="font-heading mt-1 text-center text-2xl font-bold tracking-wide text-white uppercase"
+            class="font-heading mt-1 text-center text-[26px] font-bold tracking-wide text-white uppercase"
           >
             {compare.ready.title}
           </p>
           <p
-            class="font-heading mt-4 text-center text-[10px] font-medium tracking-[0.2em] text-white/90 uppercase"
+            class="font-heading mt-3 text-center text-[9px] font-medium tracking-[0.08em] whitespace-nowrap text-white/90 uppercase"
           >
             {compare.ready.hasBeenLabel}
           </p>
-          <ul class="mt-2 space-y-1.5">
+          <ul class="mt-2 space-y-1">
             {
               compare.ready.items.map((item) => (
-                <li class="bg-navy-950/40 rounded-md px-3 py-1.5">
-                  <p class="font-heading flex items-center gap-1.5 text-[11px] font-bold text-white">
-                    <Icon name="check" size={11} class="shrink-0 text-cyan-300" />
+                <li class="rounded-md bg-[#0058A0] px-3 py-0.5 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]">
+                  <p class="font-heading flex items-center gap-1.5 text-[10px] leading-tight font-bold text-white">
+                    <Icon name="check" size={10} class="shrink-0 text-cyan-300" />
                     {item.label}
                   </p>
-                  <p class="pl-[17px] text-[9px] leading-snug text-white/80">{item.description}</p>
+                  <p class="pl-[16px] text-[8px] leading-[11px] text-white/80">
+                    {item.description}
+                  </p>
                 </li>
               ))
             }
           </ul>
-          <p class="mt-4 text-center text-[10px] leading-snug text-cyan-200">
+          <p class="mt-3 text-center text-[10px] leading-snug text-cyan-200">
             <strong class="font-bold">Visibility matters.</strong><br />
             But readiness is what gives visibility value.
           </p>
@@ -109,7 +111,7 @@ const { copy, compare } = Astro.props;
             height="220"
             loading="lazy"
             decoding="async"
-            class="mx-auto mt-3 h-8 w-auto"
+            class="mx-auto mt-2 h-7 w-auto"
             aria-hidden="true"
           />
         </div>

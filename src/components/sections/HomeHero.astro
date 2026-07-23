@@ -36,7 +36,7 @@ const { copy } = Astro.props;
         >
           {copy.eyebrowBadge}
         </Badge>
-        <p class="kicker mt-6 text-4xl sm:text-5xl md:text-[3.25rem]">{copy.kicker}</p>
+        <p class="kicker mt-6">{copy.kicker}</p>
         <h1 class="mt-3 text-4xl leading-[1.08] text-white sm:text-5xl md:text-[3.5rem]">
           {copy.headline}
         </h1>
@@ -44,10 +44,10 @@ const { copy } = Astro.props;
           {copy.body}
         </p>
         <div class="mt-9 flex flex-wrap gap-4">
-          <Button href={copy.ctaPrimary.href} variant="primary" icon="arrow-right">
+          <Button href={copy.ctaPrimary.href} variant="primary" size="lg" icon="arrow-right">
             {copy.ctaPrimary.label}
           </Button>
-          <Button href={copy.ctaSecondary.href} variant="outline">
+          <Button href={copy.ctaSecondary.href} variant="outline" size="lg">
             {copy.ctaSecondary.label}
           </Button>
         </div>

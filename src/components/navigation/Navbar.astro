@@ -23,7 +23,7 @@ const isActive = (href: string) => {
   <div class="container-page">
     <nav
       aria-label="Primary"
-      class="bg-steel-100/95 shadow-card mt-5 flex h-[68px] items-center justify-between gap-4 rounded-xl pr-2.5 pl-5 backdrop-blur-md"
+      class="bg-steel-100/95 shadow-card mt-5 flex h-[75px] items-center justify-between gap-4 rounded-xl pr-3 pl-5 backdrop-blur-md"
     >
       <a href="/" class="flex shrink-0 items-center" aria-label={`${settings.siteName} — home`}>
         <Logo variant="nav" />
@@ -54,13 +54,13 @@ const isActive = (href: string) => {
       <div class="hidden items-center gap-2.5 lg:flex">
         <a
           href={ctaNav.signIn.href}
-          class="font-heading text-navy-950 shadow-soft hover:shadow-card inline-flex h-12 items-center rounded-lg bg-cyan-400 px-6 text-sm font-semibold tracking-wide uppercase transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300"
+          class="font-heading text-navy-950 shadow-soft hover:shadow-card inline-flex h-[45px] items-center rounded-lg bg-cyan-400 px-6 text-sm font-semibold tracking-wide uppercase transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300"
         >
           {ctaNav.signIn.label}
         </a>
         <a
           href={ctaNav.register.href}
-          class="bg-navy-950 font-heading shadow-soft hover:bg-navy-900 hover:shadow-card inline-flex h-12 items-center rounded-lg px-6 text-sm font-semibold tracking-wide text-white uppercase transition-all duration-200 hover:-translate-y-0.5"
+          class="bg-navy-950 font-heading shadow-soft hover:bg-navy-900 hover:shadow-card inline-flex h-[45px] items-center rounded-lg px-6 text-sm font-semibold tracking-wide text-white uppercase transition-all duration-200 hover:-translate-y-0.5"
         >
           {ctaNav.register.label}
         </a>

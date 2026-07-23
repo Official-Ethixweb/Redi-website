@@ -153,10 +153,10 @@
   }
 
   .kicker {
-    @apply font-display text-2xl tracking-wide text-cyan-400 uppercase sm:text-3xl md:text-4xl;
+    @apply font-display text-2xl tracking-normal text-cyan-400 uppercase sm:text-3xl md:text-[3.25rem];
   }
 
   .container-page {
-    @apply mx-auto w-full max-w-[1280px] px-6 sm:px-8 lg:px-10;
+    @apply mx-auto w-full max-w-[1280px] px-6 sm:px-8;
   }
 }
