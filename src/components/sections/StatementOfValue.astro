@@ -15,7 +15,7 @@ const { copy, compare } = Astro.props;
   <div class="container-page">
     <SectionHeading eyebrow={copy.eyebrow} heading={copy.heading} />
 
-    <div class="reveal mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-10">
+    <div class="reveal mt-10 grid items-center gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-10">
       <div class="text-ink-600 space-y-6 text-[15px] leading-relaxed sm:text-base">
         {copy.paragraphs.map((p) => <p>{p}</p>)}
       </div>

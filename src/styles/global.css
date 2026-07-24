@@ -21,6 +21,9 @@
   /* Darkened cyan for text on light backgrounds (>= 4.5:1 even over the
      translucent navbar pill when it overlays a navy hero photo). */
   --color-cyan-600: #146581;
+  /* Lighter "light blue" alternative for small eyebrow/subtext on light
+     backgrounds — still >= 4.5:1 on steel-100, just brighter than -600. */
+  --color-cyan-550: #1a7290;
   --color-cyan-500: #1fa9d6;
   --color-cyan-400: #2cc3ec;
   --color-cyan-300: #73d4ee;

@@ -14,7 +14,7 @@ export const buttonVariants = cva(
           'bg-cyan-400 text-navy-950 shadow-soft hover:-translate-y-0.5 hover:bg-cyan-300 hover:shadow-card active:translate-y-0',
         dark: 'bg-navy-950 text-white shadow-soft hover:-translate-y-0.5 hover:bg-navy-900 hover:shadow-card active:translate-y-0',
         outline:
-          'border-2 border-cyan-400/70 bg-cyan-500/20 text-cyan-400 backdrop-blur-lg hover:-translate-y-0.5 hover:border-cyan-400 hover:bg-cyan-500/30 active:translate-y-0',
+          'border-2 border-cyan-400/70 bg-black/10 text-cyan-400 backdrop-blur-lg hover:-translate-y-0.5 hover:border-cyan-400 hover:bg-black/20 active:translate-y-0',
         'outline-dark':
           'border-2 border-navy-950/20 bg-transparent text-navy-950 hover:-translate-y-0.5 hover:border-navy-950/40 hover:bg-navy-950/5 active:translate-y-0',
         ghost: 'bg-transparent text-navy-950 hover:bg-navy-950/5',
