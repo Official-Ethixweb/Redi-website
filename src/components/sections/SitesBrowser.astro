@@ -1,148 +1,84 @@
 ---
 import Icon from '@/components/ui/Icon.astro';
-import certifiedSites from '@/content/seed/certified-sites.json';
 
 /**
- * Visual recreation of the embedded LocationOne certified-sites browser.
- * The widget chrome (toolbar, favorites row, per-site actions) is rendered as
- * non-interactive decoration — those controls only function inside the real
- * LocationOne application, which the map links out to. No dead buttons.
+ * Real LocationOne certified-sites search, embedded in a premium REDI-styled
+ * frame. Height grows per breakpoint instead of the vendor's suggested
+ * 100vh/position:fixed snippet, so the widget stays inside normal page flow
+ * (nav/footer/CTA banner below all still render) — see LOCATIONONE_URL for
+ * the plain "open in a new tab" fallback.
  */
-const { totalCount, sourceLabel, items } = certifiedSites;
+const LOCATIONONE_SRC = 'https://app.locationone.com/sites?organization=61253e933cccb456e7e98c2d';
 const LOCATIONONE_URL = 'https://locationone.com';
-
-const tools = [
-  { label: 'Layers', icon: 'layers' },
-  { label: 'Draw', icon: 'pencil' },
-  { label: 'Heat Maps', icon: 'grid-3x3' },
-  { label: 'Map Views', icon: 'map' },
-  { label: 'Measure', icon: 'ruler' },
-  { label: 'Share', icon: 'mail' },
-  { label: 'Hide Properties', icon: 'map-pin' },
-  { label: 'Reset', icon: 'rotate-cw' },
-];
 ---
 
-<section class="bg-steel-100 py-12 sm:py-16 md:py-20" aria-label="Certified sites browser">
+<section class="bg-steel-100 py-12 sm:py-16 md:py-20" aria-label="Certified sites search">
+  <h2 class="sr-only">Certified sites search</h2>
   <div class="container-page">
-    <h2 class="sr-only">Certified sites browser</h2>
-    <div
-      class="shadow-card reveal grid overflow-hidden rounded-xl bg-white lg:grid-cols-[270px_1fr]"
-    >
+    <div class="shadow-card reveal relative overflow-hidden rounded-xl bg-white">
       <div
-        class="flex max-h-[536px] flex-col border-b border-slate-400/30 lg:border-r lg:border-b-0"
+        class="bg-steel-100 pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 transition-opacity duration-300 ease-out"
+        data-locationone-loader
       >
-        <p
-          class="text-ink-800 border-b border-slate-400/30 px-4 py-3 text-[15px] whitespace-normal sm:whitespace-nowrap"
-        >
-          {totalCount} sites by{' '}
-          <span class="text-ink-900 inline-flex items-center gap-1 font-bold">
-            {sourceLabel}
-            <Icon name="chevron-down" size={14} />
-          </span>
+        <Icon name="loader-circle" size={32} class="animate-spin text-cyan-500" />
+        <p class="font-heading text-ink-600 text-xs font-semibold tracking-wide uppercase">
+          Loading LocationOne search…
         </p>
-        <div
-          class="text-ink-600 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-slate-400/30 px-3 py-2.5"
-          aria-hidden="true"
-        >
-          <span
-            class="inline-flex items-center gap-1 text-xs whitespace-normal sm:whitespace-nowrap"
-          >
-            <Icon name="heart" size={15} class="shrink-0 fill-amber-400 text-amber-400" />
-            Add All To Favorites
-          </span>
-          <span
-            class="inline-flex items-center gap-1 text-xs whitespace-normal sm:whitespace-nowrap"
-          >
-            <Icon name="heart" size={15} class="shrink-0 fill-slate-400/60 text-slate-400/60" />
-            Remove All From Favorites
-          </span>
-        </div>
-
-        <ul
-          class="grow divide-y divide-slate-400/25 overflow-y-auto focus-visible:ring-[3px] focus-visible:ring-cyan-400 focus-visible:outline-none"
-          role="list"
-          tabindex="0"
-          aria-label="Certified sites list (scrollable)"
-        >
-          {
-            items.map((site) => (
-              <li class="flex gap-3 px-4 py-3.5">
-                <div class="shrink-0">
-                  <img
-                    src={site.thumbnail.url}
-                    alt={site.thumbnail.alt}
-                    width="270"
-                    height="200"
-                    loading="lazy"
-                    decoding="async"
-                    class="h-[54px] w-[70px] rounded-sm border border-slate-400/30 object-cover"
-                  />
-                  {site.hasVideos && (
-                    <p class="bg-navy-800 font-heading mt-0.5 py-0.5 text-center text-[10px] font-semibold tracking-wider text-white uppercase">
-                      Videos
-                    </p>
-                  )}
-                </div>
-                <div class="min-w-0">
-                  <h3 class="font-body text-ink-900 text-[15px] leading-snug font-bold tracking-normal normal-case">
-                    {site.name}
-                  </h3>
-                  <p class="text-ink-600 mt-0.5 text-sm">{site.location}</p>
-                  <p class="text-ink-600 text-sm">{site.acres}</p>
-                  <div class="mt-1.5 flex items-center gap-3 text-slate-400" aria-hidden="true">
-                    <Icon name="heart" size={15} />
-                    <Icon name="printer" size={15} />
-                    <Icon name="map-pinned" size={15} class="text-amber-400" />
-                  </div>
-                </div>
-              </li>
-            ))
-          }
-        </ul>
       </div>
-
-      <div class="flex flex-col">
-        <ul
-          class="flex flex-wrap items-center divide-x divide-white/20 bg-[#1A64AC] px-2"
-          role="list"
-          aria-hidden="true"
-        >
-          {
-            tools.map((tool) => (
-              <li>
-                <span class="font-heading inline-flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-semibold tracking-wider text-white uppercase">
-                  <Icon name={tool.icon} size={13} />
-                  {tool.label}
-                </span>
-              </li>
-            ))
-          }
-        </ul>
-        <a
-          href={LOCATIONONE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group relative min-h-0 grow"
-          aria-label="Open the full interactive certified sites map on LocationOne (opens in a new tab)"
-        >
-          <img
-            src="/images/sections/sites-map.webp"
-            alt="Map of North America showing clusters of certified sites, with the largest concentrations across the central and eastern United States"
-            width="1560"
-            height="1013"
-            loading="lazy"
-            decoding="async"
-            class="size-full object-cover"
-          />
-          <span
-            class="font-heading text-navy-950 shadow-card absolute right-4 bottom-4 inline-flex items-center gap-1.5 rounded-lg bg-white/95 px-4 py-2 text-xs font-semibold tracking-wide uppercase opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
-          >
-            <Icon name="external-link" size={14} />
-            Open live map
-          </span>
-        </a>
-      </div>
+      <iframe
+        src={LOCATIONONE_SRC}
+        title="LocationOne certified sites search"
+        loading="lazy"
+        class="relative block h-[560px] w-full border-0 sm:h-[640px] md:h-[720px] lg:h-[820px]"
+        data-locationone-frame
+      >
+      </iframe>
     </div>
+    <p class="text-ink-600 mt-4 text-sm">
+      Powered by{' '}
+      <a
+        href={LOCATIONONE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-navy-700 font-semibold underline underline-offset-2 transition-colors hover:text-cyan-600"
+      >
+        LocationOne
+      </a>. Having trouble with the embedded search?{' '}
+      <a
+        href={LOCATIONONE_SRC}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-navy-700 font-semibold underline underline-offset-2 transition-colors hover:text-cyan-600"
+      >
+        Open it in a new tab
+      </a>.
+    </p>
   </div>
 </section>
+
+<noscript>
+  <style>
+    [data-locationone-loader] {
+      display: none;
+    }
+  </style>
+</noscript>
+
+<script>
+  function initLocationOne() {
+    const frame = document.querySelector<HTMLIFrameElement>('[data-locationone-frame]');
+    const loader = document.querySelector<HTMLElement>('[data-locationone-loader]');
+    if (!frame || !loader || frame.dataset.bound === 'true') return;
+    frame.dataset.bound = 'true';
+
+    const hide = () => {
+      loader.classList.add('opacity-0');
+      loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+    };
+
+    frame.addEventListener('load', hide, { once: true });
+  }
+
+  initLocationOne();
+  document.addEventListener('astro:page-load', initLocationOne);
+</script>

@@ -12,15 +12,15 @@ const SECURITY_HEADERS: Record<string, string> = {
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
   // 'unsafe-inline' script-src is required by Astro's island hydration
-  // scripts and inline JSON-LD; Turnstile needs the cloudflare frame/script.
+  // scripts and inline JSON-LD.
   'Content-Security-Policy': [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com",
+    "script-src 'self' 'unsafe-inline'",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     "font-src 'self'",
-    "connect-src 'self' https://challenges.cloudflare.com",
-    'frame-src https://challenges.cloudflare.com',
+    "connect-src 'self'",
+    'frame-src https://app.locationone.com https://forms.monday.com',
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
