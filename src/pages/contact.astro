@@ -1,8 +1,7 @@
 ---
-import { PUBLIC_TURNSTILE_SITE_KEY } from 'astro:env/client';
 import BaseLayout from '@/components/layout/BaseLayout.astro';
 import PageHero from '@/components/sections/PageHero.astro';
-import ContactForm from '@/components/forms/ContactForm';
+import MondayContactForm from '@/components/forms/MondayContactForm.astro';
 import { getPageCopy } from '@/services/wordpress';
 
 const copy = await getPageCopy();
@@ -38,11 +37,14 @@ const breadcrumbLd = {
   <section class="bg-steel-100 py-16 md:py-20">
     <div class="container-page">
       <div class="shadow-card rounded-2xl bg-white p-6 sm:p-10 md:p-14">
-        <ContactForm
-          client:visible
-          turnstileSiteKey={PUBLIC_TURNSTILE_SITE_KEY}
-          copy={contact.form}
-        />
+        <h2
+          class="font-heading text-navy-950 text-center text-2xl font-bold tracking-tight uppercase"
+        >
+          {contact.form.heading}
+        </h2>
+        <div class="mt-8">
+          <MondayContactForm />
+        </div>
       </div>
     </div>
   </section>

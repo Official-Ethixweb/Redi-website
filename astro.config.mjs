@@ -29,18 +29,6 @@ export default defineConfig({
   env: {
     schema: {
       WORDPRESS_API_URL: envField.string({ context: 'server', access: 'secret', optional: true }),
-      RESEND_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
-      CONTACT_TO_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
-      TURNSTILE_SECRET_KEY: envField.string({
-        context: 'server',
-        access: 'secret',
-        optional: true,
-      }),
-      PUBLIC_TURNSTILE_SITE_KEY: envField.string({
-        context: 'client',
-        access: 'public',
-        optional: true,
-      }),
       PUBLIC_GOOGLE_MAPS_API_KEY: envField.string({
         context: 'client',
         access: 'public',

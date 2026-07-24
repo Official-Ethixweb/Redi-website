@@ -14,7 +14,7 @@ REDI Sites (Readiness Evaluation for Development and Investment) is the marketin
 | Language        | TypeScript (strict)                                                  |
 | Styling         | Tailwind CSS v4 (`@theme` design tokens in `src/styles/global.css`)  |
 | CMS             | Headless WordPress (REST + ACF shapes) with local seed-JSON fallback |
-| Forms           | React Hook Form + Zod + Cloudflare Turnstile + Resend                |
+| Forms           | React Hook Form + Zod (auth); LocationOne + Monday.com iframe embeds |
 | Animation       | Framer Motion (islands), CSS transitions elsewhere                   |
 | Icons           | lucide (static SVG in Astro, `lucide-react` in islands)              |
 | Fonts           | Bevan, Oswald Variable, Nunito Variable via Fontsource               |
@@ -33,7 +33,7 @@ REDI Sites (Readiness Evaluation for Development and Investment) is the marketin
    ```bash
    cp .env.example .env
    ```
-   Every variable is optional — with none set, the site renders fully from the local seed content in `src/content/seed/`, and the contact form logs submissions to the console instead of emailing.
+   Every variable is optional — with none set, the site renders fully from the local seed content in `src/content/seed/`.
 4. Start the dev server:
    ```bash
    pnpm dev
@@ -50,14 +50,10 @@ REDI Sites (Readiness Evaluation for Development and Investment) is the marketin
 
 Defined in `.env.example` (copy to `.env`, never commit real values):
 
-| Variable                     | Purpose                                                                                        |
-| ---------------------------- | ---------------------------------------------------------------------------------------------- |
-| `WORDPRESS_API_URL`          | Headless WordPress origin. Unset → site renders from seed content.                             |
-| `RESEND_API_KEY`             | Sends contact-form emails via Resend. Unset → submissions are logged only.                     |
-| `CONTACT_TO_EMAIL`           | Inbox that contact-form submissions are forwarded to.                                          |
-| `TURNSTILE_SECRET_KEY`       | Server-side Cloudflare Turnstile verification (contact form bot protection).                   |
-| `PUBLIC_TURNSTILE_SITE_KEY`  | Client-side Turnstile widget key. Unset → widget is hidden and server verification is skipped. |
-| `PUBLIC_GOOGLE_MAPS_API_KEY` | Enables the live Google Map on the Sites page. Unset → a static map capture is used instead.   |
+| Variable                     | Purpose                                                                                      |
+| ---------------------------- | -------------------------------------------------------------------------------------------- |
+| `WORDPRESS_API_URL`          | Headless WordPress origin. Unset → site renders from seed content.                           |
+| `PUBLIC_GOOGLE_MAPS_API_KEY` | Enables the live Google Map on the Sites page. Unset → a static map capture is used instead. |
 
 ## Deployment notes
 
@@ -92,16 +88,16 @@ src/
     footer/       Footer
     sections/     Page sections (heroes, carousels, browsers, CTAs)
     cards/        PropertyCard, TeamCard, BlogCard, ScoreTierCard, AdvantageCard
-    forms/        ContactForm, SetPasswordForm (React islands)
+    forms/        MondayContactForm (embed), SetPasswordForm (React island)
     ui/           Button, Badge, Icon, Logo, SectionHeading + cva variants
   services/wordpress/   Typed CMS client + per-type services
   content/seed/         WP-shaped fallback content
   lib/                  tokens, utils, validation schemas
-  pages/                Routes (+ /api/contact, rss.xml)
+  pages/                Routes (+ rss.xml)
   styles/               global.css (Tailwind v4 theme = design tokens)
   types/                wordpress.ts domain types
 ```
 
 ## Routes
 
-`/` · `/about` · `/approach` · `/sites` · `/updates` (SSR: search/sort) · `/updates/[slug]` · `/contact` · `/legal` · `/set-password` · `/sign-in` · `/register` · `/api/contact` · `/rss.xml` · sitemap
+`/` · `/about` · `/approach` · `/sites` · `/updates` (SSR: search/sort) · `/updates/[slug]` · `/contact` · `/legal` · `/set-password` · `/sign-in` · `/register` · `/rss.xml` · `/404` · sitemap

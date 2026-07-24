@@ -153,14 +153,7 @@
   "contact": {
     "hero": { "kicker": "Get In Touch", "heading": "Contact" },
     "form": {
-      "heading": "Send us a message",
-      "nameLabel": "Full name",
-      "emailLabel": "Email address",
-      "phoneLabel": "Phone (optional)",
-      "messageLabel": "Message",
-      "submitLabel": "Send Message",
-      "successMessage": "Thanks — your message is in. Our team will reply within one business day.",
-      "errorMessage": "Something went wrong sending your message. Please try again or email info@redisites.com directly."
+      "heading": "Send us a message"
     }
   },
   "sites": {
