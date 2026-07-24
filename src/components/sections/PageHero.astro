@@ -1,5 +1,6 @@
 ---
 import { cn } from '@/lib/utils';
+import { heroSrcSet } from '@/utils/responsive-image';
 
 /**
  * Interior page hero: navy gradient over a construction photo strip that
@@ -30,6 +31,8 @@ const { kicker, heading, body, backgroundImage, size = 'default', class: classNa
   <div class="absolute inset-0 -z-10">
     <img
       src={backgroundImage}
+      srcset={heroSrcSet(backgroundImage)}
+      sizes="100vw"
       alt=""
       class="size-full object-cover"
       fetchpriority="high"

@@ -1,6 +1,7 @@
 ---
 import Button from '@/components/ui/Button.astro';
 import type { PageCopy } from '@/services/wordpress';
+import { heroSrcSet } from '@/utils/responsive-image';
 
 export interface Props {
   copy: PageCopy['about']['guildMission'];
@@ -14,6 +15,8 @@ const SSG_URL = 'https://siteselectorsguild.com';
   <div class="absolute inset-0 -z-10">
     <img
       src="/images/hero/mission-vision-bg.webp"
+      srcset={heroSrcSet('/images/hero/mission-vision-bg.webp')}
+      sizes="100vw"
       alt=""
       loading="lazy"
       decoding="async"

@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { Testimonial } from '@/types/wordpress';
+import { heroSrcSet } from '@/utils/responsive-image';
 
 interface Props {
   testimonials: Testimonial[];
@@ -50,6 +51,8 @@ export default function TestimonialCarousel({ testimonials }: Props) {
         >
           <img
             src={active.backgroundImage.url}
+            srcSet={heroSrcSet(active.backgroundImage.url)}
+            sizes="100vw"
             alt=""
             className="size-full object-cover"
             loading="lazy"

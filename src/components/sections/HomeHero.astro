@@ -3,6 +3,7 @@ import Button from '@/components/ui/Button.astro';
 import Badge from '@/components/ui/Badge.astro';
 import HeroMap from '@/components/sections/HeroMap';
 import type { PageCopy } from '@/services/wordpress';
+import { heroSrcSet } from '@/utils/responsive-image';
 
 export interface Props {
   copy: PageCopy['home']['hero'];
@@ -17,6 +18,8 @@ const { copy } = Astro.props;
   <div class="absolute inset-0 -z-10">
     <img
       src="/images/hero/home-hero-bg.webp"
+      srcset={heroSrcSet('/images/hero/home-hero-bg.webp')}
+      sizes="100vw"
       alt=""
       class="size-full object-cover"
       fetchpriority="high"

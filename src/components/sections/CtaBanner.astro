@@ -1,5 +1,6 @@
 ---
 import Button from '@/components/ui/Button.astro';
+import { heroSrcSet } from '@/utils/responsive-image';
 
 /**
  * Full-bleed navy photo CTA ("Ready to Invest?" / "Want expert guidance…").
@@ -26,6 +27,8 @@ const {
   <div class="absolute inset-0 -z-10">
     <img
       src={backgroundImage}
+      srcset={heroSrcSet(backgroundImage)}
+      sizes="100vw"
       alt=""
       loading="lazy"
       decoding="async"

@@ -1,6 +1,7 @@
 ---
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import { cn } from '@/lib/utils';
+import { heroSrcSet } from '@/utils/responsive-image';
 
 /**
  * Eyebrow + heading + flowing paragraphs, optionally with a side image
@@ -51,6 +52,8 @@ const {
           >
             <img
               src={image.url}
+              srcset={heroSrcSet(image.url)}
+              sizes="(min-width: 1280px) 1232px, 100vw"
               alt={image.alt}
               width="1026"
               height="550"

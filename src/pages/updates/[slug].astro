@@ -3,6 +3,7 @@ import BaseLayout from '@/components/layout/BaseLayout.astro';
 import Icon from '@/components/ui/Icon.astro';
 import { getAllBlogSlugs, getBlogPostBySlug } from '@/services/wordpress';
 import { formatDate } from '@/utils/format';
+import { heroSrcSet } from '@/utils/responsive-image';
 
 export async function getStaticPaths() {
   const slugs = await getAllBlogSlugs();
@@ -78,6 +79,8 @@ const breadcrumbLd = {
 
       <img
         src={(post.heroImage ?? post.featuredImage).url}
+        srcset={heroSrcSet((post.heroImage ?? post.featuredImage).url)}
+        sizes="(min-width: 1280px) 1232px, 100vw"
         alt={(post.heroImage ?? post.featuredImage).alt}
         width="1920"
         height="1030"

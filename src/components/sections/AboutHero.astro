@@ -3,6 +3,8 @@
  * About/Approach hero: heading + body left, rounded inset photo card right,
  * over a tinted office/construction photo fading to the light section below.
  */
+import { heroSrcSet } from '@/utils/responsive-image';
+
 export interface Props {
   kicker?: string;
   heading: string;
@@ -20,6 +22,8 @@ const { kicker, heading, body, image, backgroundImage, imageBadge } = Astro.prop
   <div class="absolute inset-0 -z-10">
     <img
       src={backgroundImage}
+      srcset={heroSrcSet(backgroundImage)}
+      sizes="100vw"
       alt=""
       class="size-full object-cover"
       fetchpriority="high"
