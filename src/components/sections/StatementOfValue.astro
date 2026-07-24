@@ -21,45 +21,45 @@ const { copy, compare } = Astro.props;
       </div>
 
       <div
-        class="shadow-lifted grid overflow-hidden rounded-xl sm:grid-cols-[1fr_auto_1fr]"
+        class="shadow-lifted grid overflow-hidden rounded-xl sm:grid-cols-[1fr_auto_1fr] lg:-translate-y-6"
         role="img"
         aria-label="Comparison graphic: a site that is merely Available versus a site that is REDI-evaluated Ready"
       >
-        <div class="bg-[#1E2D42] p-7 sm:p-6">
+        <div class="bg-[#1E2D42] p-7 sm:p-7">
           <p
-            class="font-heading text-center text-[11px] font-medium tracking-[0.25em] text-white/60 uppercase sm:text-[10px]"
+            class="font-heading text-center text-[11px] font-medium tracking-[0.25em] text-white/60 uppercase sm:text-[12px]"
           >
             A site that is
           </p>
           <p
-            class="font-heading mt-1 border-b border-white/25 pb-2 text-center text-[28px] font-bold tracking-wide text-white/70 uppercase sm:text-[26px]"
+            class="font-heading mt-1 border-b border-white/25 pb-2 text-center text-[28px] font-bold tracking-wide text-white/70 uppercase sm:text-[31px]"
           >
             {compare.available.title}
           </p>
           <p
-            class="font-heading mt-4 text-center text-[11px] font-medium tracking-[0.25em] text-white/60 uppercase sm:text-[10px]"
+            class="font-heading mt-4 text-center text-[11px] font-medium tracking-[0.25em] text-white/60 uppercase sm:text-[12px]"
           >
             {compare.available.meansLabel}
           </p>
           <p
-            class="font-heading mt-2 flex items-center justify-center gap-2.5 rounded-md bg-white/10 px-4 py-3 text-center text-[15px] font-semibold text-white/80 sm:gap-2 sm:px-3 sm:py-2 sm:text-xs"
+            class="font-heading mt-2 flex items-center justify-center gap-2.5 rounded-md bg-white/10 px-4 py-3 text-center text-[15px] font-semibold text-white/80 sm:gap-2.5 sm:px-4 sm:py-2.5 sm:text-sm"
           >
-            <Icon name="check" size={13} class="shrink-0 text-white/60" />
+            <Icon name="check" size={13} class="shrink-0 text-white/60 sm:size-4" />
             {compare.available.meansItem}
           </p>
-          <p class="mt-4 text-center text-[11px] text-white/55 italic sm:text-[10px]">
+          <p class="mt-4 text-center text-[11px] text-white/55 italic sm:text-[12px]">
             and that's about it
           </p>
           <p
-            class="font-heading mt-3 text-center text-[11px] font-medium tracking-[0.25em] text-white/60 uppercase sm:text-[10px]"
+            class="font-heading mt-3 text-center text-[11px] font-medium tracking-[0.25em] text-white/60 uppercase sm:text-[12px]"
           >
             {compare.available.doesntTellLabel}
           </p>
-          <ul class="mt-2 space-y-1.5 sm:space-y-1">
+          <ul class="mt-2 space-y-1.5 sm:space-y-1.5">
             {
               compare.available.doesntTellItems.map((item) => (
-                <li class="flex items-start gap-1.5 text-[11px] leading-snug text-white/60 sm:text-[10px]">
-                  <Icon name="x" size={10} class="mt-0.5 shrink-0 text-white/55" />
+                <li class="flex items-start gap-1.5 text-[11px] leading-snug text-white/60 sm:text-[12px]">
+                  <Icon name="x" size={10} class="mt-0.5 shrink-0 text-white/55 sm:size-3" />
                   {item}
                 </li>
               ))
@@ -71,38 +71,38 @@ const { copy, compare } = Astro.props;
           <span class="font-heading text-2xl font-bold text-cyan-400" aria-hidden="true">≠</span>
         </div>
 
-        <div class="bg-gradient-to-b from-[#0070C0] to-[#0058A0] p-7 sm:p-6">
+        <div class="bg-gradient-to-b from-[#0070C0] to-[#0058A0] p-7 sm:p-7">
           <p
-            class="font-heading text-center text-[11px] font-medium tracking-[0.25em] text-white/90 uppercase sm:text-[10px]"
+            class="font-heading text-center text-[11px] font-medium tracking-[0.25em] text-white/90 uppercase sm:text-[12px]"
           >
             A site that is
           </p>
           <p
-            class="font-heading mt-1 text-center text-[28px] font-bold tracking-wide text-white uppercase sm:text-[26px]"
+            class="font-heading mt-1 text-center text-[28px] font-bold tracking-wide text-white uppercase sm:text-[31px]"
           >
             {compare.ready.title}
           </p>
           <p
-            class="font-heading mt-3 text-center text-[10px] font-medium tracking-[0.08em] whitespace-nowrap text-white/90 uppercase sm:text-[9px]"
+            class="font-heading mt-3 text-center text-[10px] font-medium tracking-[0.08em] whitespace-nowrap text-white/90 uppercase sm:text-[11px]"
           >
             {compare.ready.hasBeenLabel}
           </p>
-          <ul class="mt-2 space-y-2 sm:space-y-1">
+          <ul class="mt-2 space-y-2 sm:space-y-1.5">
             {
               compare.ready.items.map((item) => (
-                <li class="rounded-md bg-[#0058A0] px-4 py-3 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)] sm:px-3 sm:py-0.5">
-                  <p class="font-heading flex items-center gap-2 text-[15px] leading-tight font-bold text-white sm:gap-1.5 sm:text-[10px]">
-                    <Icon name="check" size={10} class="shrink-0 text-cyan-300" />
+                <li class="rounded-md bg-[#0058A0] px-4 py-3 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)] sm:px-4 sm:py-1">
+                  <p class="font-heading flex items-center gap-2 text-[15px] leading-tight font-bold text-white sm:gap-2 sm:text-[12px]">
+                    <Icon name="check" size={10} class="shrink-0 text-cyan-300 sm:size-3" />
                     {item.label}
                   </p>
-                  <p class="pl-[18px] text-[11px] leading-[15px] text-white/80 sm:pl-[16px] sm:text-[8px] sm:leading-[11px]">
+                  <p class="pl-[18px] text-[11px] leading-[15px] text-white/80 sm:pl-[19px] sm:text-[10px] sm:leading-[13px]">
                     {item.description}
                   </p>
                 </li>
               ))
             }
           </ul>
-          <p class="mt-3 text-center text-[11px] leading-snug text-cyan-200 sm:text-[10px]">
+          <p class="mt-3 text-center text-[11px] leading-snug text-cyan-200 sm:text-[12px]">
             <strong class="font-bold">Visibility matters.</strong><br />
             But readiness is what gives visibility value.
           </p>
@@ -113,7 +113,7 @@ const { copy, compare } = Astro.props;
             height="220"
             loading="lazy"
             decoding="async"
-            class="mx-auto mt-2 h-7 w-auto"
+            class="mx-auto mt-2 h-7 w-auto sm:h-8"
             aria-hidden="true"
           />
         </div>
